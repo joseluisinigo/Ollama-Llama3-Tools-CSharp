@@ -1,16 +1,3 @@
-### **🔹 Repository Name:**  
-`Ollama-Llama3.1-FunctionCalling-CSharp`
-
----
-
-### **📝 README.md (Complete Documentation in English)**  
-
-Here's a detailed **README.md** for your repository, including **steps, setup, and usage** for function calling with **Ollama using Llama 3.1** in **C#**.
-
----
-
-#### **📝 README.md**
-```md
 # Ollama Function Calling with Llama 3.1 in C#
 
 ## 📝 Overview
