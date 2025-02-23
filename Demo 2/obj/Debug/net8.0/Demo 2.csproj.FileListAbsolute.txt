@@ -1,0 +1,24 @@
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.csproj.AssemblyReference.cache
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.AssemblyInfoInputs.cache
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.AssemblyInfo.cs
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.csproj.CoreCompileInputs.cache
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.sourcelink.json
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Demo 2.exe
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Demo 2.deps.json
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Demo 2.runtimeconfig.json
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Demo 2.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Demo 2.pdb
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Serilog.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\Serilog.Sinks.File.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\System.Text.Json.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.csproj.Up2Date
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\refint\Demo 2.dll
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.pdb
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\Demo 2.genruntimeconfig.cache
+D:\Ollama-Llama3-Tools-CSharp\Demo 2\obj\Debug\net8.0\ref\Demo 2.dll

@@ -1,0 +1,91 @@
+2025-02-23 09:14:16.549 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 09:14:23.880 +01:00 [INF] 📩 Respuesta de Ollama: {"model":"mistral","created_at":"2025-02-23T08:14:23.8758271Z","response":"","done":true,"done_reason":"load"}
+2025-02-23 09:26:30.336 +01:00 [INF] 🚀 Iniciando la interacción con Ollama y Llama 3.2...
+2025-02-23 09:26:32.920 +01:00 [INF] 📩 Respuesta de Llama 3.2: {"model":"llama3.2","created_at":"2025-02-23T08:26:32.9079313Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"date","arguments":{"format":"%H:%M:%S"}}}]},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T08:26:32.9191051Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":443470900,"load_duration":16182300,"prompt_eval_count":136,"prompt_eval_duration":77000000,"eval_count":19,"eval_duration":349000000}
+
+2025-02-23 09:26:32.925 +01:00 [WRN] ⚠️ Llama 3.2 no ha solicitado herramientas.
+2025-02-23 09:27:58.952 +01:00 [INF] 🚀 Iniciando la interacción con Ollama y Llama 3.2...
+2025-02-23 09:28:01.597 +01:00 [INF] 📩 Respuesta de Llama 3.2: {"model":"llama3.2","created_at":"2025-02-23T08:28:01.5841755Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"datetime.now","arguments":{}}}]},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T08:28:01.595483Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":493141000,"load_duration":14209400,"prompt_eval_count":136,"prompt_eval_duration":1000000,"eval_count":13,"eval_duration":476000000}
+
+2025-02-23 09:28:01.600 +01:00 [WRN] ⚠️ Llama 3.2 no ha solicitado herramientas.
+2025-02-23 09:28:41.707 +01:00 [INF] 🚀 Iniciando la interacción con Ollama y Llama 3.2...
+2025-02-23 09:28:44.833 +01:00 [INF] 📩 Respuesta de Llama 3.2: {"model":"llama3.2","created_at":"2025-02-23T08:28:44.8182307Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"date","arguments":{"day":5,"hour":null,"minute":null,"month":12,"second":null,"year":2023}}}]},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T08:28:44.8316425Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":955334300,"load_duration":13063300,"prompt_eval_count":136,"prompt_eval_duration":1000000,"eval_count":43,"eval_duration":939000000}
+
+2025-02-23 09:28:44.837 +01:00 [WRN] ⚠️ Llama 3.2 no ha solicitado herramientas.
+2025-02-23 09:29:52.241 +01:00 [INF] 🚀 Iniciando la interacción con Ollama y Llama 3.2...
+2025-02-23 09:29:55.034 +01:00 [INF] 📩 Respuesta de Llama 3.2: {"model":"llama3.2","created_at":"2025-02-23T08:29:55.022509Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"date","arguments":{"day":null,"hour":null,"minute":null,"month":null,"second":null,"year":null}}}]},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T08:29:55.0332728Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":619547400,"load_duration":14741500,"prompt_eval_count":136,"prompt_eval_duration":3000000,"eval_count":39,"eval_duration":601000000}
+
+2025-02-23 09:29:55.037 +01:00 [WRN] ⚠️ Llama 3.2 no ha solicitado herramientas.
+2025-02-23 09:30:25.850 +01:00 [INF] 🚀 Iniciando la interacción con Ollama y Llama 3.2...
+2025-02-23 09:30:29.974 +01:00 [INF] 📩 Respuesta de Llama 3.2: {"model":"llama3.2","created_at":"2025-02-23T08:30:29.9619004Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"Date.now","arguments":{}}}]},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T08:30:29.972598Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":1955095900,"load_duration":1682930700,"prompt_eval_count":136,"prompt_eval_duration":156000000,"eval_count":11,"eval_duration":115000000}
+
+2025-02-23 09:30:29.977 +01:00 [WRN] ⚠️ Llama 3.2 no ha solicitado herramientas.
+2025-02-23 09:31:04.838 +01:00 [INF] 🚀 Iniciando la interacción con Ollama y Llama 3.2...
+2025-02-23 09:31:10.590 +01:00 [INF] 📩 Respuesta de Llama 3.2: {"model":"mistral","created_at":"2025-02-23T08:31:10.5884901Z","message":{"role":"assistant","content":"¡Bienvenido a mi asistente de lenguaje! No tengo un reloj, pero puedo ayudarte con otras cosas. ¿Podemos hacer algo más?\n\nPor ejemplo, podríamos jugar al Adivina el número o resolver una ecuación si tienes dudas sobre cómo hacerlo."},"done_reason":"stop","done":true,"total_duration":3597134000,"load_duration":1970739900,"prompt_eval_count":46,"prompt_eval_duration":163000000,"eval_count":82,"eval_duration":1459000000}
+
+2025-02-23 09:31:10.595 +01:00 [WRN] ⚠️ Llama 3.2 no ha solicitado herramientas.
+2025-02-23 09:37:09.496 +01:00 [INF] Iniciando interacción con Ollama y Llama 3.2...
+2025-02-23 09:37:14.005 +01:00 [INF] Respuesta de Llama 3.2: {"model":"llama3.2","created_at":"2025-02-23T08:37:13.9929971Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"yfinance.ticker_info","arguments":{"symbol":"AAPL"}}}]},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T08:37:14.0038737Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":2365388900,"load_duration":1934252700,"prompt_eval_count":143,"prompt_eval_duration":204000000,"eval_count":21,"eval_duration":226000000}
+
+2025-02-23 09:37:14.015 +01:00 [ERR] Error en la llamada a Ollama: '{' is invalid after a single JSON value. Expected end of data. LineNumber: 1 | BytePositionInLine: 0.
+2025-02-23 09:53:08.351 +01:00 [INF] Iniciando interacción con Ollama y Qwen 2.5...
+2025-02-23 09:53:14.647 +01:00 [INF] Respuesta de Qwen 2.5: {"model":"qwen2.5","created_at":"2025-02-23T08:53:14.5725219Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"fetch_weather","arguments":{"location":"Madrid"}}}]},"done":false}
+{"model":"qwen2.5","created_at":"2025-02-23T08:53:14.6452583Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":4149662700,"load_duration":2105019800,"prompt_eval_count":144,"prompt_eval_duration":330000000,"eval_count":41,"eval_duration":1489000000}
+
+2025-02-23 09:53:14.659 +01:00 [ERR] Error en la llamada a Ollama: '{' is invalid after a single JSON value. Expected end of data. LineNumber: 1 | BytePositionInLine: 0.
+2025-02-23 09:53:50.961 +01:00 [INF] Iniciando interacción con Ollama y Qwen 2.5...
+2025-02-23 09:54:01.894 +01:00 [INF] Respuesta de Qwen 2.5: {"model":"qwen2.5","created_at":"2025-02-23T08:54:01.8900265Z","message":{"role":"assistant","content":"Para proporcionarte la información más precisa sobre el clima actual en Madrid, necesitaría acceder a una fuente de datos meteorológicos en tiempo real. Lamentablemente, con las herramientas actuales no puedo obtener esa información directamente. Sin embargo, te sugiero que visites un sitio web o aplicación de pronóstico del tiempo confiable para obtener la información más actualizada.\n\nSi necesitas ayuda para interpretar el clima según tus actividades, estaré encantado de asistirte con eso. Por ejemplo, si estás planeando ir al parque, hacer deporte al aire libre, o preparar ropa para un viaje a Madrid, puedo ofrecerte consejos generales basados en diferentes tipos de pronósticos meteorológicos."},"done_reason":"stop","done":true,"total_duration":8774561500,"load_duration":2193689000,"prompt_eval_count":144,"prompt_eval_duration":234000000,"eval_count":162,"eval_duration":6113000000}
+
+2025-02-23 09:54:01.906 +01:00 [WRN] Qwen 2.5 no ha solicitado herramientas.
+2025-02-23 10:13:01.215 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:13:10.925 +01:00 [INF] 📩 Respuesta de llama3-groq-tool-use: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:13:10.8478149Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done":false}
+{"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:13:10.9234002Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":4112904400,"load_duration":2425356500,"prompt_eval_count":155,"prompt_eval_duration":327000000,"eval_count":27,"eval_duration":995000000}
+
+2025-02-23 10:13:10.985 +01:00 [ERR] ❌ Error en la llamada a Ollama: '{' is invalid after a single JSON value. Expected end of data. LineNumber: 1 | BytePositionInLine: 0.
+2025-02-23 10:15:06.827 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:15:16.873 +01:00 [INF] 📩 Respuesta de llama3-groq-tool-use: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:15:16.8014692Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done":false}
+{"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:15:16.8708084Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":1158537100,"load_duration":22747600,"prompt_eval_count":155,"prompt_eval_duration":223000000,"eval_count":27,"eval_duration":911000000}
+
+2025-02-23 10:15:17.388 +01:00 [INF] ✅ llama3-groq-tool-use solicitó 'get_weather' con argumento 'Madrid': El clima actual en Madrid es nublado con una temperatura de 27°C.
+2025-02-23 10:15:38.981 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:15:49.385 +01:00 [INF] 📩 Respuesta de qwen2.5: {"model":"qwen2.5","created_at":"2025-02-23T09:15:49.3103804Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"city":"Madrid"}}}]},"done":false}
+{"model":"qwen2.5","created_at":"2025-02-23T09:15:49.3837321Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":5589160800,"load_duration":4362855600,"prompt_eval_count":151,"prompt_eval_duration":247000000,"eval_count":21,"eval_duration":718000000}
+
+2025-02-23 10:15:49.398 +01:00 [ERR] ❌ Error en la llamada a Ollama: The given key was not present in the dictionary.
+2025-02-23 10:15:56.235 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:16:09.454 +01:00 [INF] 📩 Respuesta de mistral: {"model":"mistral","created_at":"2025-02-23T09:16:07.4724227Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"city":"Madrid"}}}]},"done":false}
+{"model":"mistral","created_at":"2025-02-23T09:16:09.4526143Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":8333826500,"load_duration":5793809600,"prompt_eval_count":85,"prompt_eval_duration":186000000,"eval_count":127,"eval_duration":2314000000}
+
+2025-02-23 10:16:09.466 +01:00 [ERR] ❌ Error en la llamada a Ollama: The given key was not present in the dictionary.
+2025-02-23 10:16:15.828 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:16:28.408 +01:00 [INF] 📩 Respuesta de llama3-groq-tool-use: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:16:28.4048473Z","message":{"role":"assistant","content":"I'm sorry but I don't have enough information to answer that question. Can you provide more context or clarify your question so I can better assist you?"},"done_reason":"stop","done":true,"total_duration":8326942400,"load_duration":6491794300,"prompt_eval_count":155,"prompt_eval_duration":287000000,"eval_count":32,"eval_duration":1171000000}
+
+2025-02-23 10:16:38.744 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:16:44.835 +01:00 [INF] 📩 Respuesta de llama3-groq-tool-use: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:16:44.7655862Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done":false}
+{"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:16:44.8333382Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":1194999400,"load_duration":15102000,"prompt_eval_count":155,"prompt_eval_duration":287000000,"eval_count":27,"eval_duration":890000000}
+
+2025-02-23 10:16:45.360 +01:00 [INF] ✅ llama3-groq-tool-use solicitó 'get_weather' con argumento 'Madrid': El clima actual en Madrid es nevando con una temperatura de 37°C.
+2025-02-23 10:17:06.959 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:17:12.365 +01:00 [INF] 📩 Respuesta de llama3-groq-tool-use: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:17:12.3620339Z","message":{"role":"assistant","content":"I'm sorry but I do not have the capability to perform external HTTP requests. However, I can provide information about how to get that data yourself. Would you like me to explain?"},"done_reason":"stop","done":true,"total_duration":1634224500,"load_duration":13251500,"prompt_eval_count":155,"prompt_eval_duration":343000000,"eval_count":38,"eval_duration":1277000000}
+
+2025-02-23 10:17:20.054 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:17:24.147 +01:00 [INF] 📩 Respuesta de llama3-groq-tool-use: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:17:24.1437966Z","message":{"role":"assistant","content":"I'm sorry but I don't have access to that functionality."},"done_reason":"stop","done":true,"total_duration":832392100,"load_duration":17377400,"prompt_eval_count":155,"prompt_eval_duration":334000000,"eval_count":14,"eval_duration":479000000}
+
+2025-02-23 10:17:27.739 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:17:33.586 +01:00 [INF] 📩 Respuesta de llama3-groq-tool-use: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:17:33.5132096Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done":false}
+{"model":"llama3-groq-tool-use","created_at":"2025-02-23T09:17:33.5845328Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":1286672300,"load_duration":14530400,"prompt_eval_count":155,"prompt_eval_duration":338000000,"eval_count":27,"eval_duration":931000000}
+
+2025-02-23 10:17:34.111 +01:00 [INF] ✅ llama3-groq-tool-use solicitó 'get_weather' con argumento 'Madrid': El clima actual en Madrid es nevando con una temperatura de 36°C.
+2025-02-23 10:25:00.057 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:25:30.604 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:25:36.387 +01:00 [INF] ✅ llama3-groq-tool-use solicitó 'get_weather' con argumento 'Madrid': El clima actual en Madrid es soleado con una temperatura de 23°C.
+2025-02-23 10:25:39.875 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:25:44.392 +01:00 [INF] ✅ llama3-groq-tool-use solicitó 'get_weather' con argumento 'Madrid': El clima actual en Madrid es nublado con una temperatura de 9°C.
+2025-02-23 10:25:55.467 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 10:26:01.157 +01:00 [INF] ✅ llama3-groq-tool-use solicitó 'get_weather' con argumento 'Madrid': El clima actual en Madrid es soleado con una temperatura de 18°C.
