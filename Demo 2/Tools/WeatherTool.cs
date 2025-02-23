@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Tools
@@ -10,11 +11,23 @@ namespace Tools
 
         public async Task<string> ExecuteAsync(string argumentsJson)
         {
-            var arguments = JsonSerializer.Deserialize<WeatherArguments>(argumentsJson);
-            if (arguments?.Location == null)
-                return "⚠️ Error: No se proporcionó una ubicación válida.";
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true  // 🔹 Hace que "location" se reconozca aunque venga en minúsculas
+                };
 
-            return await GetWeatherAsync(arguments.Location);
+                var arguments = JsonSerializer.Deserialize<WeatherArguments>(argumentsJson, options);
+                if (arguments == null || string.IsNullOrEmpty(arguments.Location))
+                    return "⚠️ Error: No se proporcionó una ubicación válida.";
+
+                return await GetWeatherAsync(arguments.Location);
+            }
+            catch (Exception ex)
+            {
+                return $"❌ Error al procesar los argumentos: {ex.Message}";
+            }
         }
 
         private async Task<string> GetWeatherAsync(string location)
@@ -29,6 +42,7 @@ namespace Tools
 
         private class WeatherArguments
         {
+            [JsonPropertyName("location")]  // 🔹 Se asegura de que "location" se mapea correctamente
             public string? Location { get; set; }
         }
     }

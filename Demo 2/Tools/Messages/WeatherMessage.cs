@@ -4,7 +4,7 @@ namespace Tools.Messages
     {
         public static string GetMessage()
         {
-            return "Dime el clima actual en Madrid usando la herramienta correspondiente.";
+            return "Usa la herramienta 'get_weather' para decirme el clima actual en Madrid.";
         }
     }
 }
