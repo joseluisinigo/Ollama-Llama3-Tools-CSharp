@@ -132,3 +132,440 @@
 2025-02-23 11:55:37.983 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
 2025-02-23 11:55:44.179 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T10:55:44.1748123Z","message":{"role":"assistant","content":"I'm sorry but I do not have the capability to perform external HTTP requests. However, you can easily find the current weather in Madrid using a weather service or app."},"done_reason":"stop","done":true,"total_duration":4063714500,"load_duration":2220276400,"prompt_eval_count":198,"prompt_eval_duration":279000000,"eval_count":35,"eval_duration":1220000000}
 2025-02-23 11:55:44.188 +01:00 [WRN] ⚠️ No se han solicitado herramientas en la respuesta.
+2025-02-23 12:05:51.274 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:05:52.936 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
+2025-02-23 12:05:58.783 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T11:05:58.7796912Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done_reason":"stop","done":true,"total_duration":3709127600,"load_duration":2185707100,"prompt_eval_count":197,"prompt_eval_duration":275000000,"eval_count":27,"eval_duration":887000000}
+2025-02-23 12:05:58.794 +01:00 [INF] 🔧 Se detectaron herramientas en la respuesta.
+2025-02-23 12:05:58.796 +01:00 [INF] 🛠️ Llama3-Groq solicitó la herramienta 'get_weather'
+2025-02-23 12:05:58.797 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:05:58.805 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:05:58.807 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:05:58.815 +01:00 [INF] ✅ Resultado de 'get_weather': ⚠️ Error: No se proporcionó una ubicación válida.
+2025-02-23 12:08:24.963 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:08:26.132 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
+2025-02-23 12:08:29.470 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T11:08:29.4659355Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done_reason":"stop","done":true,"total_duration":1198774600,"load_duration":17067100,"prompt_eval_count":197,"prompt_eval_duration":323000000,"eval_count":27,"eval_duration":857000000}
+2025-02-23 12:08:29.479 +01:00 [INF] 🔧 Se detectaron herramientas en la respuesta.
+2025-02-23 12:08:29.481 +01:00 [INF] 🛠️ Llama3-Groq solicitó la herramienta 'get_weather'
+2025-02-23 12:08:29.483 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:08:29.484 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:08:29.485 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:08:29.999 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es soleado con una temperatura de 12°C.
+2025-02-23 12:08:34.444 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:08:35.343 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
+2025-02-23 12:08:36.504 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T11:08:36.5032869Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done_reason":"stop","done":true,"total_duration":1157624900,"load_duration":16342400,"prompt_eval_count":197,"prompt_eval_duration":163000000,"eval_count":27,"eval_duration":977000000}
+2025-02-23 12:08:36.506 +01:00 [INF] 🔧 Se detectaron herramientas en la respuesta.
+2025-02-23 12:08:36.506 +01:00 [INF] 🛠️ Llama3-Groq solicitó la herramienta 'get_weather'
+2025-02-23 12:08:36.507 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:08:36.507 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:08:36.508 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:08:37.011 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nevando con una temperatura de 0°C.
+2025-02-23 12:12:19.739 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:12:31.438 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
+2025-02-23 12:12:35.490 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T11:12:35.4863531Z","message":{"role":"assistant","content":"I'm sorry but I don't have the capability to perform external function calls from this platform. However, you can easily find out the current weather in Madrid using various weather apps or websites. Is there anything else I can assist you with?"},"done_reason":"stop","done":true,"total_duration":1908884100,"load_duration":14626500,"prompt_eval_count":197,"prompt_eval_duration":320000000,"eval_count":49,"eval_duration":1572000000}
+2025-02-23 12:12:35.500 +01:00 [WRN] ⚠️ No se han solicitado herramientas en la respuesta.
+2025-02-23 12:12:38.925 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:12:39.808 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
+2025-02-23 12:12:41.818 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T11:12:41.8173117Z","message":{"role":"assistant","content":"I'm sorry but I don't have the capability to perform external HTTP requests to retrieve weather information directly. However, if you provide me with any specific parameters or requirements, I can guide you on how to use other tools that might help you achieve your goal."},"done_reason":"stop","done":true,"total_duration":2005641900,"load_duration":16803500,"prompt_eval_count":197,"prompt_eval_duration":90000000,"eval_count":53,"eval_duration":1897000000}
+2025-02-23 12:12:41.820 +01:00 [WRN] ⚠️ No se han solicitado herramientas en la respuesta.
+2025-02-23 12:12:45.126 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:12:47.068 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
+2025-02-23 12:12:48.981 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T11:12:48.980579Z","message":{"role":"assistant","content":"I'm sorry but I don't have the capability to perform external HTTP requests to fetch real-time weather data. However, if you provide me with any other information or tasks that can be performed within our platform, I'd be happy to assist!"},"done_reason":"stop","done":true,"total_duration":1907988900,"load_duration":16305700,"prompt_eval_count":197,"prompt_eval_duration":163000000,"eval_count":50,"eval_duration":1727000000}
+2025-02-23 12:12:48.983 +01:00 [WRN] ⚠️ No se han solicitado herramientas en la respuesta.
+2025-02-23 12:12:48.983 +01:00 [INF] 📡 Enviando solicitud a Ollama para el modelo llama3-groq-tool-use...
+2025-02-23 12:12:49.873 +01:00 [INF] 📩 Respuesta de Ollama recibida: {"model":"llama3-groq-tool-use","created_at":"2025-02-23T11:12:49.8730845Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}}]},"done_reason":"stop","done":true,"total_duration":888201100,"load_duration":13789600,"prompt_eval_count":197,"prompt_eval_duration":31000000,"eval_count":27,"eval_duration":842000000}
+2025-02-23 12:12:49.875 +01:00 [INF] 🔧 Se detectaron herramientas en la respuesta.
+2025-02-23 12:12:49.877 +01:00 [INF] 🛠️ Llama3-Groq solicitó la herramienta 'get_weather'
+2025-02-23 12:12:49.878 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:12:49.879 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:12:49.880 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:12:50.392 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es soleado con una temperatura de 38°C.
+2025-02-23 12:23:04.316 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:27:35.240 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:27:48.884 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:27:48.887 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:27:48.889 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:27:48.890 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:27:49.407 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nevando con una temperatura de 20°C.
+2025-02-23 12:30:02.681 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:30:22.004 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:30:22.006 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:30:22.009 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:30:22.010 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:30:22.523 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es soleado con una temperatura de 30°C.
+2025-02-23 12:30:27.548 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:30:27.550 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:30:27.551 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:30:27.552 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:30:28.063 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es lluvioso con una temperatura de 20°C.
+2025-02-23 12:30:32.888 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:30:32.890 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:30:32.891 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:30:32.891 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-23 12:30:32.892 +01:00 [INF] ✅ Resultado de 'get_weather': ⚠️ Error: No se proporcionó una ubicación válida.
+2025-02-23 12:33:17.207 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:33:17.210 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:33:17.211 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:33:17.211 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:33:17.718 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nublado con una temperatura de -5°C.
+2025-02-23 12:33:39.808 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:33:47.760 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:33:47.764 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:33:47.766 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:33:47.766 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:33:48.291 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es soleado con una temperatura de 32°C.
+2025-02-23 12:34:04.417 +01:00 [INF] 🔄 Intento 1: No se han solicitado herramientas. Reintentando...
+2025-02-23 12:34:05.377 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:34:05.379 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:34:05.380 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:34:05.381 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:34:05.893 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es lluvioso con una temperatura de 2°C.
+2025-02-23 12:39:29.725 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:39:38.369 +01:00 [INF] 📩 Respuesta de llama3.2: {"model":"llama3.2","created_at":"2025-02-23T11:39:36.1442667Z","message":{"role":"assistant","content":"¡"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.1597619Z","message":{"role":"assistant","content":"Cl"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.1707224Z","message":{"role":"assistant","content":"aro"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.181331Z","message":{"role":"assistant","content":"!"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.1920908Z","message":{"role":"assistant","content":" Un"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2026991Z","message":{"role":"assistant","content":" dato"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2132331Z","message":{"role":"assistant","content":" cur"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2242545Z","message":{"role":"assistant","content":"ioso"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2349801Z","message":{"role":"assistant","content":" sobre"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.245416Z","message":{"role":"assistant","content":" Madrid"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2556538Z","message":{"role":"assistant","content":" es"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2668023Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2773954Z","message":{"role":"assistant","content":" el"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2881278Z","message":{"role":"assistant","content":" bar"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.2983239Z","message":{"role":"assistant","content":"rio"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3092146Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3201493Z","message":{"role":"assistant","content":" Ch"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3305367Z","message":{"role":"assistant","content":"ue"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3415218Z","message":{"role":"assistant","content":"ca"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3520492Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.362591Z","message":{"role":"assistant","content":" conoc"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3730856Z","message":{"role":"assistant","content":"ido"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3839247Z","message":{"role":"assistant","content":" por"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.3944443Z","message":{"role":"assistant","content":" su"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4054103Z","message":{"role":"assistant","content":" vibr"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4158407Z","message":{"role":"assistant","content":"ante"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4270787Z","message":{"role":"assistant","content":" vida"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4376292Z","message":{"role":"assistant","content":" noct"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4483772Z","message":{"role":"assistant","content":"urn"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4591202Z","message":{"role":"assistant","content":"a"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4696652Z","message":{"role":"assistant","content":" y"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4819434Z","message":{"role":"assistant","content":" su"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.4926762Z","message":{"role":"assistant","content":" divers"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.503007Z","message":{"role":"assistant","content":"idad"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.5139397Z","message":{"role":"assistant","content":" cultural"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.5245392Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.535282Z","message":{"role":"assistant","content":" tiene"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.5460397Z","message":{"role":"assistant","content":" una"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.5571294Z","message":{"role":"assistant","content":" conexión"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.5680963Z","message":{"role":"assistant","content":" histó"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.5787772Z","message":{"role":"assistant","content":"rica"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.5892764Z","message":{"role":"assistant","content":" con"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6000221Z","message":{"role":"assistant","content":" la"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6108981Z","message":{"role":"assistant","content":" comunidad"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.621572Z","message":{"role":"assistant","content":" jud"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6321751Z","message":{"role":"assistant","content":"ía"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6429366Z","message":{"role":"assistant","content":" del"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6537139Z","message":{"role":"assistant","content":" país"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6644934Z","message":{"role":"assistant","content":".\n\n"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6753464Z","message":{"role":"assistant","content":"En"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.6861075Z","message":{"role":"assistant","content":" "},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.696813Z","message":{"role":"assistant","content":"200"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7077958Z","message":{"role":"assistant","content":"9"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.718377Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7292569Z","message":{"role":"assistant","content":" se"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7401943Z","message":{"role":"assistant","content":" desc"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7508255Z","message":{"role":"assistant","content":"ub"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7617739Z","message":{"role":"assistant","content":"rier"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7724902Z","message":{"role":"assistant","content":"on"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7832501Z","message":{"role":"assistant","content":" rest"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.7943504Z","message":{"role":"assistant","content":"os"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8050946Z","message":{"role":"assistant","content":" ar"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8158454Z","message":{"role":"assistant","content":"que"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8279442Z","message":{"role":"assistant","content":"ológ"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8386955Z","message":{"role":"assistant","content":"icos"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.849464Z","message":{"role":"assistant","content":" en"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8601775Z","message":{"role":"assistant","content":" el"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8710192Z","message":{"role":"assistant","content":" bar"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8817112Z","message":{"role":"assistant","content":"rio"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.8924641Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.903289Z","message":{"role":"assistant","content":" Ch"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9138278Z","message":{"role":"assistant","content":"ue"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9254731Z","message":{"role":"assistant","content":"ca"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9365432Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9471978Z","message":{"role":"assistant","content":" dat"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9579705Z","message":{"role":"assistant","content":"an"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9685004Z","message":{"role":"assistant","content":" del"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9792568Z","message":{"role":"assistant","content":" sig"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:36.9899499Z","message":{"role":"assistant","content":"lo"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0010705Z","message":{"role":"assistant","content":" XV"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0117995Z","message":{"role":"assistant","content":"III"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.022759Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0338949Z","message":{"role":"assistant","content":" lo"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0449156Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0557834Z","message":{"role":"assistant","content":" sug"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0666444Z","message":{"role":"assistant","content":"iere"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0776051Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0888185Z","message":{"role":"assistant","content":" podr"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.0995759Z","message":{"role":"assistant","content":"ían"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1105132Z","message":{"role":"assistant","content":" haber"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1213547Z","message":{"role":"assistant","content":" sido"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1328502Z","message":{"role":"assistant","content":" parte"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1441915Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1551854Z","message":{"role":"assistant","content":" un"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1659758Z","message":{"role":"assistant","content":" antig"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1783264Z","message":{"role":"assistant","content":"uo"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.1894512Z","message":{"role":"assistant","content":" cement"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2003983Z","message":{"role":"assistant","content":"er"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2111993Z","message":{"role":"assistant","content":"io"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2225094Z","message":{"role":"assistant","content":" jud"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2337286Z","message":{"role":"assistant","content":"ío"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2446869Z","message":{"role":"assistant","content":"."},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2556818Z","message":{"role":"assistant","content":" En"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2672376Z","message":{"role":"assistant","content":" realidad"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2784528Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.2896546Z","message":{"role":"assistant","content":" en"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3001947Z","message":{"role":"assistant","content":" el"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3115971Z","message":{"role":"assistant","content":" sig"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3223193Z","message":{"role":"assistant","content":"lo"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3333761Z","message":{"role":"assistant","content":" X"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3445883Z","message":{"role":"assistant","content":"IX"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3550704Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3665913Z","message":{"role":"assistant","content":" había"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3773905Z","message":{"role":"assistant","content":" una"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3884068Z","message":{"role":"assistant","content":" gran"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.3990453Z","message":{"role":"assistant","content":" comunidad"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4100957Z","message":{"role":"assistant","content":" jud"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4209975Z","message":{"role":"assistant","content":"ía"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4320205Z","message":{"role":"assistant","content":" en"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4428745Z","message":{"role":"assistant","content":" Madrid"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4536796Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4646558Z","message":{"role":"assistant","content":" se"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4754899Z","message":{"role":"assistant","content":" estable"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.4864303Z","message":{"role":"assistant","content":"ció"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.49702Z","message":{"role":"assistant","content":" en"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5083727Z","message":{"role":"assistant","content":" el"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5194243Z","message":{"role":"assistant","content":" bar"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5314555Z","message":{"role":"assistant","content":"rio"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5422811Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5535495Z","message":{"role":"assistant","content":" Ch"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5645817Z","message":{"role":"assistant","content":"ue"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.575672Z","message":{"role":"assistant","content":"ca"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5866661Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.5975393Z","message":{"role":"assistant","content":" y"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6083981Z","message":{"role":"assistant","content":" muchos"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6193029Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6300954Z","message":{"role":"assistant","content":" sus"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6409807Z","message":{"role":"assistant","content":" mi"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6518088Z","message":{"role":"assistant","content":"embros"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6624737Z","message":{"role":"assistant","content":" er"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6738416Z","message":{"role":"assistant","content":"an"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.684885Z","message":{"role":"assistant","content":" r"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.6957419Z","message":{"role":"assistant","content":"abin"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7067725Z","message":{"role":"assistant","content":"os"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.717842Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7286041Z","message":{"role":"assistant","content":" comerc"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7395981Z","message":{"role":"assistant","content":"iant"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7503711Z","message":{"role":"assistant","content":"es"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7616119Z","message":{"role":"assistant","content":" y"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7723918Z","message":{"role":"assistant","content":" artist"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7835918Z","message":{"role":"assistant","content":"as"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.7946327Z","message":{"role":"assistant","content":".\n\n"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.8056451Z","message":{"role":"assistant","content":"H"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.8166115Z","message":{"role":"assistant","content":"oy"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.8275551Z","message":{"role":"assistant","content":" en"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.8385662Z","message":{"role":"assistant","content":" día"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.8497651Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.8608226Z","message":{"role":"assistant","content":" el"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.8716778Z","message":{"role":"assistant","content":" bar"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.883767Z","message":{"role":"assistant","content":"rio"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.894765Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9059853Z","message":{"role":"assistant","content":" Ch"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9171585Z","message":{"role":"assistant","content":"ue"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.928427Z","message":{"role":"assistant","content":"ca"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9395346Z","message":{"role":"assistant","content":" sigue"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9505703Z","message":{"role":"assistant","content":" siendo"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9614617Z","message":{"role":"assistant","content":" un"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9728321Z","message":{"role":"assistant","content":" lugar"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9835061Z","message":{"role":"assistant","content":" emblem"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:37.9950755Z","message":{"role":"assistant","content":"ático"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0062947Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0171189Z","message":{"role":"assistant","content":" la"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0287304Z","message":{"role":"assistant","content":" divers"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0401492Z","message":{"role":"assistant","content":"idad"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0513161Z","message":{"role":"assistant","content":" cultural"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0624718Z","message":{"role":"assistant","content":" mad"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0738128Z","message":{"role":"assistant","content":"r"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0848781Z","message":{"role":"assistant","content":"ile"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.0963717Z","message":{"role":"assistant","content":"ña"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.107965Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.1193355Z","message":{"role":"assistant","content":" con"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.1303603Z","message":{"role":"assistant","content":" una"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.1416194Z","message":{"role":"assistant","content":" gran"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.1524894Z","message":{"role":"assistant","content":" varied"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.1639956Z","message":{"role":"assistant","content":"ad"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.175144Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.1839952Z","message":{"role":"assistant","content":" restaurant"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.1974837Z","message":{"role":"assistant","content":"es"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2088557Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2201078Z","message":{"role":"assistant","content":" b"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2307512Z","message":{"role":"assistant","content":"ares"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2435057Z","message":{"role":"assistant","content":" y"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2548531Z","message":{"role":"assistant","content":" ti"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2659777Z","message":{"role":"assistant","content":"endas"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2775515Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.2887243Z","message":{"role":"assistant","content":" ref"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.300305Z","message":{"role":"assistant","content":"le"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.3114368Z","message":{"role":"assistant","content":"jan"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.3225894Z","message":{"role":"assistant","content":" su"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.3334943Z","message":{"role":"assistant","content":" historia"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.3450146Z","message":{"role":"assistant","content":" multicultural"},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.3560994Z","message":{"role":"assistant","content":"."},"done":false}
+{"model":"llama3.2","created_at":"2025-02-23T11:39:38.3672355Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":4958235500,"load_duration":2540670500,"prompt_eval_count":34,"prompt_eval_duration":188000000,"eval_count":203,"eval_duration":2226000000}
+
+2025-02-23 12:39:44.086 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:39:52.246 +01:00 [INF] 🔄 Intento 1: No se han solicitado herramientas. Reintentando...
+2025-02-23 12:39:53.249 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:39:53.252 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:39:53.253 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:39:53.254 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:39:53.767 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es lluvioso con una temperatura de 5°C.
+2025-02-23 12:39:57.379 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:39:57.380 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:39:57.381 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:39:57.382 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-23 12:39:57.384 +01:00 [INF] ✅ Resultado de 'get_stock_price': ⚠️ Error: No se proporcionó un símbolo de acción válido.
+2025-02-23 12:40:03.753 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:40:03.754 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:40:03.755 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:40:03.756 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-23 12:40:03.757 +01:00 [INF] ✅ Resultado de 'get_stock_price': ⚠️ Error: No se proporcionó un símbolo de acción válido.
+2025-02-23 12:40:05.699 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:40:05.700 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:40:05.701 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:40:05.702 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_symbol":"AAPL"}
+2025-02-23 12:40:05.702 +01:00 [INF] ✅ Resultado de 'get_stock_price': ⚠️ Error: No se proporcionó un símbolo de acción válido.
+2025-02-23 12:40:07.341 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:40:07.343 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:40:07.344 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:40:07.344 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-23 12:40:07.858 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $149.10
+2025-02-23 12:41:26.417 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:41:32.834 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:41:32.836 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:41:32.838 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:41:32.840 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-23 12:41:33.369 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $310.12
+2025-02-23 12:41:41.205 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:41:41.207 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:41:41.208 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:41:41.208 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_symbol":"AAPL"}
+2025-02-23 12:41:41.210 +01:00 [WRN] ❌ Intento 1: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:41:42.231 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:41:42.232 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:41:42.233 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:41:42.234 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_symbol":"AAPL"}
+2025-02-23 12:41:42.235 +01:00 [WRN] ❌ Intento 2: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:41:43.241 +01:00 [INF] ✅ Intento 3: Se detectaron herramientas en la respuesta.
+2025-02-23 12:41:43.243 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:41:43.244 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:41:43.244 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-23 12:41:43.753 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $453.58
+2025-02-23 12:41:47.255 +01:00 [INF] 🔄 Intento 1: No se han solicitado herramientas. Reintentando...
+2025-02-23 12:41:48.221 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:41:48.223 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:41:48.224 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:41:48.225 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:41:48.742 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es lluvioso con una temperatura de 16°C.
+2025-02-23 12:42:54.662 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-23 12:43:05.568 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:05.571 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:43:05.573 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:43:05.574 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:43:06.086 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es soleado con una temperatura de 38°C.
+2025-02-23 12:43:09.404 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:09.406 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:43:09.408 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:43:09.409 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:43:09.922 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nublado con una temperatura de -8°C.
+2025-02-23 12:43:12.123 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:12.125 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:43:12.126 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:43:12.126 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:43:12.629 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nublado con una temperatura de 32°C.
+2025-02-23 12:43:14.625 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:14.627 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:43:14.628 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:43:14.628 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:43:15.134 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nublado con una temperatura de 39°C.
+2025-02-23 12:43:18.662 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:18.664 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:18.665 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:18.665 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-23 12:43:19.176 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $179.09
+2025-02-23 12:43:21.867 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:21.869 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:21.870 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:21.871 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-23 12:43:21.872 +01:00 [WRN] ❌ Intento 1: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:23.079 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:23.081 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:23.082 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:23.082 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_symbol":"AAPL"}
+2025-02-23 12:43:23.083 +01:00 [WRN] ❌ Intento 2: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:24.298 +01:00 [INF] ✅ Intento 3: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:24.299 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:24.300 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:24.300 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker_symbol":"AAPL"}
+2025-02-23 12:43:24.301 +01:00 [WRN] ❌ Intento 3: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:25.480 +01:00 [INF] ✅ Intento 4: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:25.481 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:25.482 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:25.483 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-23 12:43:25.989 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $241.78
+2025-02-23 12:43:28.695 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:28.696 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:28.697 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:28.698 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_ticker":"AAPL"}
+2025-02-23 12:43:28.698 +01:00 [WRN] ❌ Intento 1: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:29.896 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:29.898 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:29.899 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:29.900 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-23 12:43:30.404 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $261.92
+2025-02-23 12:43:32.914 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:32.916 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:43:32.917 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:43:32.917 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-23 12:43:32.918 +01:00 [WRN] ❌ Intento 1: Respuesta inválida de la herramienta 'get_weather'. Reintentando...
+2025-02-23 12:43:34.071 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:34.072 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-23 12:43:34.073 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-23 12:43:34.073 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-23 12:43:34.581 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es soleado con una temperatura de 27°C.
+2025-02-23 12:43:35.923 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:35.925 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:35.926 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:35.927 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-23 12:43:35.927 +01:00 [WRN] ❌ Intento 1: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:37.180 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:37.182 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:37.183 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:37.184 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_symbol":"AAPL"}
+2025-02-23 12:43:37.184 +01:00 [WRN] ❌ Intento 2: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:38.460 +01:00 [INF] ✅ Intento 3: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:38.462 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:38.463 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:38.464 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_ticker":"AAPL"}
+2025-02-23 12:43:38.465 +01:00 [WRN] ❌ Intento 3: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:39.693 +01:00 [INF] ✅ Intento 4: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:39.695 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:39.696 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:39.697 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"stock_symbol":"AAPL"}
+2025-02-23 12:43:39.698 +01:00 [WRN] ❌ Intento 4: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-23 12:43:40.890 +01:00 [INF] ✅ Intento 5: Se detectaron herramientas en la respuesta.
+2025-02-23 12:43:40.892 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-23 12:43:40.893 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-23 12:43:40.894 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-23 12:43:41.406 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $102.97

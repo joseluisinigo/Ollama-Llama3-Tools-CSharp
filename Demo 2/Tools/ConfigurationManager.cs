@@ -18,8 +18,8 @@ namespace Tools
                     new { role = "system", content = PromptManager.GetSystemPrompt() },
                     new { role = "user", content = MessageManager.GetUserMessage(toolName) }
                 },
-                tools = tools.Length > 0 ? tools : null,  // Asegura que se envían herramientas
-                tool_choice = "auto",  // Indica al modelo que debe usar herramientas si existen
+                tools = tools.Length > 0 ? tools : null,  // Enviar herramientas si existen
+                tool_choice = "required",  // 🔹 Ahora forzamos que Ollama use herramientas sí o sí
                 stream = false
             };
         }

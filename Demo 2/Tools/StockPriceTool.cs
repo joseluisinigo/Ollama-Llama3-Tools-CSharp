@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Tools
@@ -10,11 +11,23 @@ namespace Tools
 
         public async Task<string> ExecuteAsync(string argumentsJson)
         {
-            var arguments = JsonSerializer.Deserialize<StockArguments>(argumentsJson);
-            if (arguments?.Symbol == null)
-                return "⚠️ Error: No se proporcionó un símbolo de acción válido.";
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true  // 🔹 Asegura que "symbol" se reconozca correctamente
+                };
 
-            return await GetStockPriceAsync(arguments.Symbol);
+                var arguments = JsonSerializer.Deserialize<StockArguments>(argumentsJson, options);
+                if (arguments == null || string.IsNullOrEmpty(arguments.Symbol))
+                    return "⚠️ Error: No se proporcionó un símbolo de acción válido.";
+
+                return await GetStockPriceAsync(arguments.Symbol);
+            }
+            catch (Exception ex)
+            {
+                return $"❌ Error al procesar los argumentos: {ex.Message}";
+            }
         }
 
         private async Task<string> GetStockPriceAsync(string symbol)
@@ -27,6 +40,7 @@ namespace Tools
 
         private class StockArguments
         {
+            [JsonPropertyName("symbol")]
             public string? Symbol { get; set; }
         }
     }

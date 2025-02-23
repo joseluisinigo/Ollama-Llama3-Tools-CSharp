@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Serilog;
 using Tools;
-using Tools.Prompts;  // 🔹 Agrega esto para importar PromptManager
-using Tools.Messages;  // 🔹 Agrega esto para importar MessageManager
 
 namespace Models
 {
@@ -12,81 +10,67 @@ namespace Models
     {
         public override async Task HandleRequestAsync(string model)
         {
-            Log.Information("📡 Enviando solicitud a Ollama para el modelo {model}...", model);
+            await HandleRequestAsync(model, null);
+        }
 
-            var tools = ToolDefinitionManager.GetAllToolDefinitions();
-
-            var requestBody = new
+        public async Task HandleRequestAsync(string model, string? toolName)
+        {
+            int attempts = 0;
+            while (true)
             {
-                model,
-                messages = new[]
+                attempts++;
+                string responseString = await SendRequestAsync(model, ConfigurationManager.GetRequestBody(model, toolName ?? "get_weather"));
+
+                if (string.IsNullOrEmpty(responseString))
                 {
-                    new { role = "system", content = PromptManager.GetSystemPrompt() },
-                    new { role = "user", content = MessageManager.GetUserMessage("get_weather") }
-                },
-                tools = tools.Length > 0 ? tools : null,  // Asegura que se envían herramientas
-                tool_choice = "auto",  // Fuerza el uso de herramientas
-                stream = false
-            };
+                    continue;
+                }
 
-            string responseString = await SendRequestAsync(model, requestBody);
-
-            if (string.IsNullOrEmpty(responseString))
-            {
-                Log.Warning("⚠️ No se recibió respuesta de Ollama.");
-                return;
-            }
-
-            Log.Information("📩 Respuesta de Ollama recibida: {response}", responseString);
-            var responseParts = responseString.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var part in responseParts)
-            {
-                try
+                var responseJson = JsonDocument.Parse(responseString);
+                if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
                 {
-                    var responseJson = JsonDocument.Parse(part);
-                    if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
+                    continue;
+                }
+
+                if (!messageElement.TryGetProperty("tool_calls", out var toolCallsElement) || toolCallsElement.GetArrayLength() == 0)
+                {
+                    Log.Information($"🔄 Intento {attempts}: No se han solicitado herramientas. Reintentando...");
+                    continue;
+                }
+
+                Log.Information($"✅ Intento {attempts}: Se detectaron herramientas en la respuesta.");
+
+                bool executedSuccessfully = false;
+
+                foreach (var toolCall in toolCallsElement.EnumerateArray())
+                {
+                    var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
+                    if (!string.IsNullOrEmpty(toolName) && functionName != toolName) continue;
+
+                    var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
+                    var tool = ToolManager.GetToolByName(functionName);
+                    if (tool == null)
                     {
-                        Log.Warning("⚠️ La respuesta no contiene 'message'.");
+                        Log.Error($"❌ No se encontró la herramienta '{functionName}' en ToolManager.");
                         continue;
                     }
 
-                    if (!messageElement.TryGetProperty("tool_calls", out var toolCallsElement))
+                    Log.Information($"🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}");
+                    var result = await tool.ExecuteAsync(argumentsJson);
+
+                    if (result.Contains("⚠️ Error")) 
                     {
-                        Log.Warning("⚠️ No se han solicitado herramientas en la respuesta.");
+                        Log.Warning($"❌ Intento {attempts}: Respuesta inválida de la herramienta '{functionName}'. Reintentando...");
                         continue;
                     }
 
-                    Log.Information("🔧 Se detectaron herramientas en la respuesta.");
-                    foreach (var toolCall in toolCallsElement.EnumerateArray())
-                    {
-                        var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
-                        if (string.IsNullOrEmpty(functionName))
-                        {
-                            Log.Warning("⚠️ Se recibió una llamada a una herramienta sin nombre válido.");
-                            continue;
-                        }
-
-                        Log.Information("🛠️ Llama3-Groq solicitó la herramienta '{functionName}'", functionName);
-                        var tool = ToolManager.GetToolByName(functionName);
-                        if (tool == null)
-                        {
-                            Log.Error("❌ No se encontró la herramienta '{functionName}' en ToolManager.", functionName);
-                            continue;
-                        }
-
-                        var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
-                        Log.Information("🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}", functionName, argumentsJson);
-                        var result = await tool.ExecuteAsync(argumentsJson);
-
-                        Log.Information("✅ Resultado de '{functionName}': {result}", functionName, result);
-                        Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
-                    }
+                    Log.Information($"✅ Resultado de '{functionName}': {result}");
+                    Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                    executedSuccessfully = true;
+                    break; // Sale del bucle cuando obtiene un resultado válido
                 }
-                catch (JsonException ex)
-                {
-                    Log.Error("❌ Error en el JSON recibido: {error}. Datos recibidos: {json}", ex.Message, part);
-                }
+
+                if (executedSuccessfully) break;
             }
         }
     }

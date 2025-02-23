@@ -12,9 +12,12 @@ namespace Tools.Messages
 
         public static string GetUserMessage(string toolName)
         {
-            return messages.ContainsKey(toolName) 
-                ? messages[toolName] 
-                : "Dime la información que necesito usando la herramienta adecuada.";
+            return toolName switch
+            {
+                "get_weather" => "Usa la herramienta 'get_weather' para decirme el clima actual en Madrid.",
+                "get_stock_price" => "Usa la herramienta 'get_stock_price' para decirme el precio de la acción de Apple (AAPL).",
+                _ => "Usa la herramienta adecuada para responder mi pregunta."
+            };
         }
     }
 }

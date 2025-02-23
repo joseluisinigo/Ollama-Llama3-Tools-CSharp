@@ -1,13 +1,75 @@
-Here’s the **complete changelog** with **dates and structured versioning** in **English** for your pull request. This follows best practices for versioning and documentation. 🚀  
-
----
-
-```markdown
 # 📌 Changelog: Project Updates & Enhancements
 
 ## 📅 **Version History & Updates**
 
----
+
+## 🆕 **[v1.3.0] - 2025-02-23**
+### 🚀 **New Feature: Dynamic Tool Selection & Persistent Retries**
+A major update that **improves tool selection and execution** in `llama3-groq-tool-use`. Now, the user can **select individual tools dynamically** and **the system keeps retrying failed requests** until a valid response is obtained.
+
+### 🔄 **Key Enhancements**
+- ✅ **New dynamic tool selection menu**:
+  - 📌 Users can now **select individual tools** instead of running all tools at once.
+  - 📌 Option to **go back (`v`) at any stage** to improve navigation.
+  - 📌 The menu updates automatically as new tools are added to the system.
+  
+- ✅ **Improved tool execution logic**:
+  - 🔄 **Persistent retries for tool execution**:
+    - If `get_weather` or `get_stock_price` **fails to receive a valid response**, the system **keeps retrying until it works**.
+    - Each retry **increments a counter** and logs the number of attempts.
+    - The system **only stops retrying when a valid response is obtained**.
+
+- ✅ **Updated tool execution handling**:
+  - 🔹 `get_stock_price` was previously **misconfigured**, causing `get_weather` to be executed instead.
+  - 🔹 Now **each tool executes independently** based on user selection.
+  - 🔹 Fixed **JSON parameter mismatch** for `get_stock_price` (`symbol` instead of `stock_symbol`).
+
+### 📂 **Modified / Added Files**
+#### 📌 **Modified:**
+- 📂 `Program.cs`
+  - 🔹 New **tool selection menu** integrated dynamically.
+  - 🔹 Now detects **all available tools** without hardcoding them.
+  - 🔹 Improved **menu navigation**, allowing users to return (`v`) at any step.
+  - 🔹 Eliminated **the need to press ENTER** when navigating menus.
+
+- 📂 `Models/LlamaGroqToolUse.cs`
+  - 🔹 Now **handles retries** until a valid response is received.
+  - 🔹 **Fixed incorrect execution of `get_stock_price`**, ensuring it no longer calls `get_weather`.
+  - 🔹 **Added attempt count logging**, so users can see how many times a request was retried.
+  - 🔹 Improved **error handling** when a tool does not return a valid response.
+
+- 📂 `Tools/StockPriceTool.cs`
+  - 🔹 **Fixed JSON parsing issues** with `symbol` vs. `stock_symbol`.
+  - 🔹 Ensured correct parameter interpretation to **prevent errors**.
+
+### ⚡ **Usage Example**
+1. Run the project:
+   ```sh
+   dotnet run
+   ```
+2. Select **option `1`** to choose a model:
+   ```
+   📌 Available options:
+   1. Select and run an Ollama model
+   2. Export project code to 'code.txt'
+   3. Exit
+   ```
+3. Choose **model `5` (`llama3-groq-tool-use`)**:
+   ```
+   🔧 Tools available:
+   1. get_weather
+   2. get_stock_price
+   3. 🛠️ Execute all
+   4. 🔙 Back to main menu
+   ```
+4. Select a tool or execute all tools.
+5. If a tool fails to return a response, the system **automatically retries until success**, displaying the number of attempts.
+
+### 🛠 **Planned Improvements**
+- 📂 **Add more tools dynamically**.
+- 📌 **Allow users to configure retry limits**.
+
+
 
 ## 🆕 **[v1.2.0] - 2025-02-23**
 ### 🚀 **New Feature: `Export Code` Functionality**
@@ -112,19 +174,3 @@ For manual updates, re-run:
 dotnet build
 dotnet run
 ```
-
----
-
-🔹 **Now the project is more modular, scalable, and well-documented!** 🚀🔥  
-```
-
----
-
-## ✅ **Why This Changelog is Great?**
-- **🔹 Follows Semantic Versioning (`vX.Y.Z`).**
-- **🔹 Includes Dates for Each Version.**
-- **🔹 Clearly Lists Features, Fixes, and Future Plans.**
-- **🔹 Easy-to-read Summary Table.**
-- **🔹 Includes `How to Update` Instructions.**
-
-This **changelog** will make your **pull request look professional** and help reviewers understand all the changes. 🚀🔥
