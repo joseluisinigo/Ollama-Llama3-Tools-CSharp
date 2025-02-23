@@ -1,29 +1,37 @@
-Sí, **Ollama** soporta herramientas en **C#**, y puedes integrarlo con tus propios métodos para que la IA los llame según sea necesario. Además, **LM Studio** también es compatible con modelos de Ollama, pero actualmente no tiene una interfaz nativa para definir herramientas como Ollama directamente. Sin embargo, si ejecutas un modelo en LM Studio, podrías hacer llamadas a su API desde C# de manera similar.
+
+# 🦙 **Ollama Tools in C#**
+## 🚀 **Integrating Ollama with Function Calling in C#**
+
+Yes, **Ollama** supports tools in **C#**, allowing the AI to call your own methods when needed.  
+Additionally, **LM Studio** is compatible with Ollama models, but it currently lacks a native interface for defining tools.  
+However, you can still interact with LM Studio’s API from C# in a similar way.
 
 ---
 
-## 🔹 **1. Modelo (LM) recomendado**
-Para herramientas en **Ollama**, necesitas un modelo con capacidades de *function calling*. Algunos recomendados son:
-- **Mistral (mistral:latest)** → Pequeño y rápido, muy eficiente para tareas generales.
-- **Gemma (gemma:latest)** → Más potente en algunas tareas de razonamiento.
-- **Llama 3 (cuando esté disponible en Ollama)** → Promete mejoras en el uso de herramientas.
+## 🔹 **1. Recommended (LM) Models**
+For tools in **Ollama**, you need a model with *function calling* capabilities. Recommended models:
+- **Mistral (`mistral:latest`)** → Small and fast, efficient for general tasks.
+- **Gemma (`gemma:latest`)** → More powerful for reasoning tasks.
+- **Qwen (`qwen2.5`)** → Optimized for function calling.
+- **Llama 3 (when available in Ollama)** → Expected to improve tool usage.
 
-Para instalar el modelo en **Ollama**, usa:
+To install a model in **Ollama**, use:
 ```bash
 ollama pull mistral
 ```
-O si prefieres otro:
+Or another:
 ```bash
-ollama pull gemma
+ollama pull qwen2.5
 ```
 
 ---
 
-## 🔹 **2. Código en C#**
-Aquí tienes un **ejemplo en C#** usando **Ollama** con herramientas y un sistema de *logging* para registrar cómo interactúa la IA con el código:
+## 🔹 **2. C# Integration with Ollama Tools**
+Here is an **example in C#** using **Ollama tools** with a structured logging system.  
+This allows **Ollama to call functions dynamically** based on user queries.
 
-### 📌 **Ejemplo: Consultar la hora actual usando una herramienta en C#**
-Este código define un método (`GetCurrentTime`) que Ollama puede llamar cuando sea necesario.
+### 📌 **Example: Getting Current Time with a Tool in C#**
+This code defines a method (`GetCurrentTime`) that Ollama can invoke when required.
 
 ```csharp
 using System;
@@ -35,58 +43,49 @@ using System.Threading.Tasks;
 
 class Program
 {
-    // Definir el cliente HTTP para comunicarnos con Ollama
     private static readonly HttpClient client = new HttpClient();
 
     static async Task Main(string[] args)
     {
-        Console.WriteLine("Inicializando Ollama con herramientas...");
+        Console.WriteLine("Initializing Ollama with tools...");
 
-        // Definir las herramientas disponibles
         var tools = new[]
         {
             new
             {
                 name = "get_current_time",
-                description = "Devuelve la hora actual en formato HH:mm:ss"
+                description = "Returns the current time in HH:mm:ss format"
             }
         };
 
-        // Mensaje del usuario
         var messages = new[]
         {
-            new { role = "user", content = "¿Qué hora es ahora?" }
+            new { role = "user", content = "What time is it now?" }
         };
 
-        // Crear la solicitud JSON
         var requestBody = new
         {
-            model = "mistral",  // Puedes cambiarlo por otro modelo que hayas instalado
+            model = "mistral",
             messages,
             tools
         };
 
-        // Serializar el JSON
         string jsonContent = JsonSerializer.Serialize(requestBody);
         var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-        // Enviar la solicitud a Ollama
         var response = await client.PostAsync("http://localhost:11434/api/generate", content);
         string responseString = await response.Content.ReadAsStringAsync();
 
-        Console.WriteLine("🔹 Respuesta de Ollama:");
+        Console.WriteLine("🔹 Ollama Response:");
         Console.WriteLine(responseString);
 
-        // Analizar la respuesta para ver si llamó a la función
         if (responseString.Contains("get_current_time"))
         {
-            // Llamar a la función localmente
             string result = GetCurrentTime();
-            Console.WriteLine($"✅ La IA ha solicitado la hora: {result}");
+            Console.WriteLine($"✅ The AI requested the time: {result}");
         }
     }
 
-    // Método que Ollama puede llamar
     static string GetCurrentTime()
     {
         return DateTime.Now.ToString("HH:mm:ss");
@@ -96,34 +95,123 @@ class Program
 
 ---
 
-## 🔹 **3. Explicación del Código**
-✅ Se inicializa una **herramienta** llamada `"get_current_time"`.  
-✅ Se envía un **mensaje del usuario** a Ollama preguntando la hora.  
-✅ Ollama analiza si necesita llamar a la herramienta y lo registra en el JSON.  
-✅ Si la IA detecta que debe llamar a `"get_current_time"`, se ejecuta el método en C#.  
-✅ Se **imprime la interacción** en la consola para tener un *log* detallado.
+## 🔹 **3. Improvements and Enhancements**
+### ✅ **Major Refactoring & Modularization**
+- 🏗 **Separated tools into individual files in `Tools/Definitions/`.**
+- 🏗 **Created `PromptManager.cs` and `MessageManager.cs` to manage prompts dynamically.**
+- 🏗 **Added `ConfigurationManager.cs` to handle request structuring.**
+- 🏗 **Introduced a clean and extendable way to integrate new tools.**
+- 🏗 **Added a feature to export all project code to `code.txt`.**
+
+### 📌 **New Feature: Export Code**
+To export all source code into `code.txt`, run:
+```sh
+dotnet run
+```
+And select **option 2**.
 
 ---
 
-## 🔹 **4. Cómo Ver los Logs de Interacción**
-Para asegurarte de que Ollama está llamando correctamente a las herramientas:
-1. **Ejecuta Ollama en modo servidor**:  
+## 🔹 **4. Viewing Logs & Debugging Interactions**
+1. **Run Ollama in server mode**:
    ```bash
    ollama serve
    ```
-2. **Añade logs en el código** con `Console.WriteLine` para registrar respuestas.
-3. **Opcional**: Usar **Serilog** para almacenar logs en un archivo:
+2. **Enable logging in C#** using `Serilog`:
    ```csharp
-   Log.Information("Respuesta de Ollama: {responseString}");
+   Log.Information("Ollama Response: {responseString}");
    ```
+3. **Check generated logs in `logs.txt`**.
 
 ---
 
-## 🔹 **5. ¿Se puede hacer con LM Studio?**
-Actualmente, **LM Studio** solo permite cargar modelos y usarlos en un endpoint **localhost:1234**.  
-Pero sí puedes hacer llamadas HTTP a LM Studio de la misma manera, aunque no tiene un sistema nativo de herramientas (*function calling*). 
+## 🔹 **5. Using LM Studio Instead of Ollama**
+LM Studio supports **running models locally**, but it **does not support function calling**.  
+If using LM Studio, change the API endpoint in your code:
+```csharp
+var response = await client.PostAsync("http://localhost:1234/v1/chat/completions", content);
+```
 
-Si usas **LM Studio**, cambiarías la URL en el código:
+---
+
+## 🎯 **Conclusion**
+- **Ollama supports function calling natively in C#.** 🚀
+- **LM Studio does not, but can still process requests.**
+- **The project is now modular, extendable, and fully structured!** 🔥
+
+---
+
+# 🦙 **Herramientas de Ollama en C#**
+## 🚀 **Integración de Ollama con Function Calling en C#**
+
+Sí, **Ollama** admite herramientas en **C#**, lo que permite que la IA llame a tus propios métodos según sea necesario.  
+Además, **LM Studio** es compatible con los modelos de Ollama, aunque actualmente no tiene una interfaz nativa para definir herramientas.  
+Sin embargo, puedes interactuar con la API de LM Studio desde C# de manera similar.
+
+---
+
+## 🔹 **1. Modelos (LM) recomendados**
+Para herramientas en **Ollama**, necesitas un modelo con capacidades de *function calling*.  
+Algunos recomendados son:
+- **Mistral (`mistral:latest`)** → Pequeño y rápido, eficiente en tareas generales.
+- **Gemma (`gemma:latest`)** → Más potente para tareas de razonamiento.
+- **Qwen (`qwen2.5`)** → Optimizado para *function calling*.
+- **Llama 3 (cuando esté disponible en Ollama)** → Mejoras esperadas en el uso de herramientas.
+
+Para instalar un modelo en **Ollama**, usa:
+```bash
+ollama pull mistral
+```
+O si prefieres otro:
+```bash
+ollama pull qwen2.5
+```
+
+---
+
+## 🔹 **2. Integración en C# con Ollama Tools**
+Aquí tienes un **ejemplo en C#** usando **Ollama Tools** con un sistema de logs estructurado.  
+Esto permite que **Ollama llame funciones dinámicamente** según las consultas del usuario.
+
+### 📌 **Ejemplo: Obtener la Hora con una Herramienta en C#**
+```csharp
+// (Mismo código de ejemplo que en la versión en inglés)
+```
+
+---
+
+## 🔹 **3. Mejoras y Optimización**
+### ✅ **Refactorización Completa y Modularización**
+- 🏗 **Las herramientas ahora están separadas en `Tools/Definitions/`.**
+- 🏗 **`PromptManager.cs` y `MessageManager.cs` gestionan los mensajes dinámicamente.**
+- 🏗 **`ConfigurationManager.cs` maneja la estructura de las solicitudes.**
+- 🏗 **Nueva función para exportar todo el código del proyecto a `code.txt`.**
+
+### 📌 **Nueva Función: Exportar Código**
+Para exportar todo el código fuente en `code.txt`, ejecuta:
+```sh
+dotnet run
+```
+Y selecciona **la opción 2**.
+
+---
+
+## 🔹 **4. Ver Logs y Depurar Interacciones**
+1. **Ejecuta Ollama en modo servidor**:
+   ```bash
+   ollama serve
+   ```
+2. **Habilita logs en C#** con `Serilog`:
+   ```csharp
+   Log.Information("Respuesta de Ollama: {responseString}");
+   ```
+3. **Revisa los logs generados en `logs.txt`**.
+
+---
+
+## 🔹 **5. Usar LM Studio en Lugar de Ollama**
+LM Studio permite **ejecutar modelos localmente**, pero **NO admite `function calling`**.  
+Si usas LM Studio, cambia la API en el código:
 ```csharp
 var response = await client.PostAsync("http://localhost:1234/v1/chat/completions", content);
 ```
@@ -131,8 +219,7 @@ var response = await client.PostAsync("http://localhost:1234/v1/chat/completions
 ---
 
 ## 🎯 **Conclusión**
-- **Ollama sí permite herramientas nativas en C#**. 🚀
-- **LM Studio NO tiene tools**, pero puedes usarlo para consultas normales con modelos de lenguaje.
-- Puedes ver las interacciones de Ollama en la terminal o guardar logs en un archivo.
-
-Si necesitas ayuda con otro ejemplo más complejo, dime qué quieres hacer. 😃
+- **Ollama permite `function calling` en C# de forma nativa.** 🚀
+- **LM Studio no, pero puede usarse para consultas normales.**
+- **El proyecto ahora es modular, escalable y bien estructurado.** 🔥
+```
