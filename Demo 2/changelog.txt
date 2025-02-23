@@ -1,0 +1,130 @@
+Here’s the **complete changelog** with **dates and structured versioning** in **English** for your pull request. This follows best practices for versioning and documentation. 🚀  
+
+---
+
+```markdown
+# 📌 Changelog: Project Updates & Enhancements
+
+## 📅 **Version History & Updates**
+
+---
+
+## 🆕 **[v1.2.0] - 2025-02-23**
+### 🚀 **New Feature: `Export Code` Functionality**
+A new feature has been added to **export all project source code** into a file called `code.txt`, while excluding unnecessary files.
+
+### 🔄 **Key Enhancements**
+- ✅ **New `ExportCodeToTxt()` function in `CodeExporter.cs`**:
+  - 🔹 Scans **all project files**.
+  - 🔹 **Generates a `code.txt` file** containing the full source code.
+  - 🔹 **Sorts files** by path for better organization.
+  - 🔹 **Excludes `obj/` and `bin/` folders** to avoid unnecessary files.
+- ✅ **New menu option in `Program.cs`**:
+  - 📌 **Option 2**: Exports the project’s source code to `code.txt`.
+
+### 📂 **Modified / Added Files**
+#### 📌 **New File:**
+- 📂 `Utils/CodeExporter.cs` → Implements `ExportCodeToTxt()` function.
+
+#### 📌 **Modified:**
+- 📂 `Program.cs`  
+  - 🔹 Added a new menu option to execute `CodeExporter.ExportCodeToTxt()`.
+
+### ⚡ **Usage Example**
+1. Run the project:
+   ```sh
+   dotnet run
+   ```
+2. Select **option `2`** in the menu:
+   ```
+   📌 Available options:
+   1. Select and run an Ollama model
+   2. Export project code to 'code.txt'
+   3. Exit
+   ```
+3. Check the `code.txt` file in the project’s root directory.
+
+### 🛠 **Planned Improvements**
+- 🏗 Option to exclude additional files (e.g., `.gitignore`).
+- 📂 Ability to export only specific file types.
+
+🔹 **Now the code is cleaner and more structured!** 🚀🔥
+
+---
+
+## 🆕 **[v1.1.0] - 2025-02-20**
+### 🔧 **Refactoring: Full Atomization of `LlamaGroqToolUse`**
+To improve code maintainability, we **completely atomized the structure** of `LlamaGroqToolUse.cs`.
+
+### 🔄 **Main Changes**
+- ✅ **Separated tool definitions into individual files in `Tools/Definitions/`**.
+- ✅ **Separated prompts into `Tools/Prompts/`**.
+- ✅ **Added `PromptManager.cs` and `ToolDefinitionManager.cs`** to handle configuration dynamically.
+- ✅ **Now `LlamaGroqToolUse.cs` is completely clean and only processes JSON responses.**
+
+### 📂 **Modified / Added Files**
+- 📂 `Models/LlamaGroqToolUse.cs` (Refactored)
+- 📂 `Tools/Definitions/` (New tool definition files)
+- 📂 `Tools/Prompts/` (New prompt structure)
+- 📂 `Tools/ToolDefinitionManager.cs`
+- 📂 `Tools/PromptManager.cs`
+
+---
+
+## 🆕 **[v1.0.0] - 2025-02-15**
+### 🎉 **Initial Version: Ollama Model Integration**
+First stable release with **Ollama model selection and execution**.
+
+### 🔄 **Core Features**
+- ✅ **Implemented Ollama model selection**:
+  - `qwen2.5`
+  - `mistral`
+  - `gemma`
+  - `llama3.2`
+  - `llama3-groq-tool-use`
+- ✅ **Basic interaction with Ollama API**.
+- ✅ **Logging system added using Serilog**.
+
+### 📂 **Core Files**
+- 📂 `Models/GenericOllamaModel.cs`
+- 📂 `Models/LlamaGroqToolUse.cs`
+- 📂 `Program.cs`
+- 📂 `logs.txt` (Logging system)
+
+---
+
+## 📌 **Summary of Changes**
+| Version | Date       | Changes |
+|---------|-----------|---------|
+| v1.2.0  | 2025-02-23 | **Added Export Code feature** (`code.txt`) |
+| v1.1.0  | 2025-02-20 | **Full atomization of `LlamaGroqToolUse`** |
+| v1.0.0  | 2025-02-15 | **Initial stable release** with Ollama integration |
+
+---
+
+## 📌 **How to Update**
+To update your local version, run:
+```sh
+git pull origin main
+```
+For manual updates, re-run:
+```sh
+dotnet build
+dotnet run
+```
+
+---
+
+🔹 **Now the project is more modular, scalable, and well-documented!** 🚀🔥  
+```
+
+---
+
+## ✅ **Why This Changelog is Great?**
+- **🔹 Follows Semantic Versioning (`vX.Y.Z`).**
+- **🔹 Includes Dates for Each Version.**
+- **🔹 Clearly Lists Features, Fixes, and Future Plans.**
+- **🔹 Easy-to-read Summary Table.**
+- **🔹 Includes `How to Update` Instructions.**
+
+This **changelog** will make your **pull request look professional** and help reviewers understand all the changes. 🚀🔥

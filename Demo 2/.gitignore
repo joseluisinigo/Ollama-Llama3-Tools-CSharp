@@ -1,0 +1,47 @@
+# Ignore Visual Studio & Rider folders
+.vscode/
+.idea/
+*.suo
+*.user
+
+Demo 2/obj/
+Demo 2/bin/
+**/bin/  
+**/obj/
+cd 
+# Ignore build directories
+bin/
+obj/
+out/
+debug/
+release/
+
+# Ignore temporary & system files
+*.tmp
+*.log
+*.lock
+*.cache
+*.DS_Store
+Thumbs.db
+# Ignorar directorios de compilación
+bin/
+obj/
+
+# Ignore compiled files
+*.dll
+*.exe
+*.pdb
+*.class
+
+# Ignore NuGet packages
+*.nupkg
+packages/
+.nuget/
+
+# Ignore environment settings
+.env
+*.secret
+secrets.json
+
+# Ignore user-specific configuration files
+*.userprefs
