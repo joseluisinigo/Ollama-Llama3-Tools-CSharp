@@ -12,11 +12,17 @@ namespace Tools
             new StockPriceTool()
         };
 
-        public static ITool? GetToolByName(string name)
+        public static ITool? GetToolByName(string? name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                Log.Warning("⚠️ Se intentó buscar una herramienta con un nombre vacío o nulo.");
+                return null;
+            }
+
             Log.Information("🔎 Buscando herramienta '{name}' en ToolManager...", name);
             var tool = tools.FirstOrDefault(t => t.Name == name);
-            
+
             if (tool == null)
             {
                 Log.Warning("⚠️ Herramienta '{name}' no encontrada en ToolManager.", name);
