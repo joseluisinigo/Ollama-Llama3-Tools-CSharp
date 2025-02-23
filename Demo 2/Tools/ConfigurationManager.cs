@@ -18,7 +18,8 @@ namespace Tools
                     new { role = "system", content = PromptManager.GetSystemPrompt() },
                     new { role = "user", content = MessageManager.GetUserMessage(toolName) }
                 },
-                tools = tools.Length > 0 ? tools : null,  // Evita enviar un array vacío
+                tools = tools.Length > 0 ? tools : null,  // Asegura que se envían herramientas
+                tool_choice = "auto",  // Indica al modelo que debe usar herramientas si existen
                 stream = false
             };
         }

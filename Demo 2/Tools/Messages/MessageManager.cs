@@ -12,7 +12,9 @@ namespace Tools.Messages
 
         public static string GetUserMessage(string toolName)
         {
-            return messages.ContainsKey(toolName) ? messages[toolName] : "¿Qué necesitas saber?";
+            return messages.ContainsKey(toolName) 
+                ? messages[toolName] 
+                : "Dime la información que necesito usando la herramienta adecuada.";
         }
     }
 }
