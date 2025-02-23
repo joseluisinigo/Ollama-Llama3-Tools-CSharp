@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace Tools
 {
@@ -8,12 +8,25 @@ namespace Tools
     {
         private static readonly List<ITool> tools = new List<ITool>
         {
-            new WeatherTool() // Aquí podemos agregar más herramientas
+            new WeatherTool(),
+            new StockPriceTool()
         };
 
-        public static ITool GetToolByName(string name)
+        public static ITool? GetToolByName(string name)
         {
-            return tools.FirstOrDefault(tool => tool.Name == name);
+            Log.Information("🔎 Buscando herramienta '{name}' en ToolManager...", name);
+            var tool = tools.FirstOrDefault(t => t.Name == name);
+            
+            if (tool == null)
+            {
+                Log.Warning("⚠️ Herramienta '{name}' no encontrada en ToolManager.", name);
+            }
+            else
+            {
+                Log.Information("✅ Herramienta '{name}' encontrada en ToolManager.", name);
+            }
+
+            return tool;
         }
     }
 }
