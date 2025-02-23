@@ -2,7 +2,7 @@ using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Serilog;
-using Tools; // Importamos la carpeta Tools
+using Tools; // Importamos herramientas
 
 namespace Models
 {
@@ -61,13 +61,18 @@ namespace Models
                         foreach (var toolCall in toolCallsElement.EnumerateArray())
                         {
                             var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
-                            var arguments = toolCall.GetProperty("function").GetProperty("arguments").GetProperty("location").GetString();
+                            var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
 
-                            if (functionName == "get_weather")
+                            var tool = ToolManager.GetToolByName(functionName);
+                            if (tool != null)
                             {
-                                var result = await WeatherTool.GetWeatherAsync(arguments);
-                                Log.Information("✅ {model} solicitó '{functionName}' con argumento '{arguments}': {result}", model, functionName, arguments, result);
+                                var result = await tool.ExecuteAsync(argumentsJson);
+                                Log.Information("✅ {model} ejecutó '{functionName}' con resultado: {result}", model, functionName, result);
                                 Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                            }
+                            else
+                            {
+                                Log.Warning("⚠️ No se encontró la herramienta '{functionName}'.", functionName);
                             }
                         }
                     }

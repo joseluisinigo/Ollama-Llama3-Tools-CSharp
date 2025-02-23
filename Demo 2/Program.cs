@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Serilog;
-using Models; // Importamos la carpeta Models
+using Models;
 
 class Program
 {
