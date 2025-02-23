@@ -4,6 +4,10 @@
 *.suo
 *.user
 
+Demo 2/obj/
+Demo 2/bin/
+**/bin/  
+**/obj/
 
 # Ignore build directories
 bin/
