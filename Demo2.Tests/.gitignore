@@ -1,0 +1,46 @@
+# Ignore Visual Studio specific files
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Ignore build directories
+bin/
+obj/
+
+# Ignore test results
+TestResults/
+
+# Ignore .NET related files
+project.lock.json
+*.pidb
+*.psess
+
+# Ignore local environment settings
+.env
+secrets.json
+
+# Ignore compiled binary files
+*.dll
+*.exe
+*.pdb
+*.so
+*.dylib
+*.lib
+*.a
+
+# Ignore coverage files
+coverage/
+coverage.*
+*.coverage
+
+# Ignore IDE specific settings
+.idea/
+*.iml
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
