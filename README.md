@@ -271,12 +271,3 @@ It allows Llama 3.1 to **trigger external functions dynamically** based on the u
 - 📌 [.NET SDK](https://dotnet.microsoft.com/en-us/download)
 - 📌 [OpenAI NuGet](https://www.nuget.org/packages/OpenAI)
 
----
-
-🚀 **Now you can build AI-powered applications in C# with function calling!** 🎉
-```
-
----
-
-This **README** provides all the necessary details for your repository.  
-Let me know if you need any tweaks! 🚀😃
