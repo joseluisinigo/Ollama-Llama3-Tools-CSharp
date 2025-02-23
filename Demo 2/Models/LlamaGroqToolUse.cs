@@ -3,6 +3,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Serilog;
 using Tools;
+using Tools.Prompts;  // 🔹 Agrega esto para importar PromptManager
+using Tools.Messages;  // 🔹 Agrega esto para importar MessageManager
 
 namespace Models
 {
@@ -11,7 +13,22 @@ namespace Models
         public override async Task HandleRequestAsync(string model)
         {
             Log.Information("📡 Enviando solicitud a Ollama para el modelo {model}...", model);
-            var requestBody = ConfigurationManager.GetRequestBody(model, "get_weather");
+
+            var tools = ToolDefinitionManager.GetAllToolDefinitions();
+
+            var requestBody = new
+            {
+                model,
+                messages = new[]
+                {
+                    new { role = "system", content = PromptManager.GetSystemPrompt() },
+                    new { role = "user", content = MessageManager.GetUserMessage("get_weather") }
+                },
+                tools = tools.Length > 0 ? tools : null,  // Asegura que se envían herramientas
+                tool_choice = "auto",  // Fuerza el uso de herramientas
+                stream = false
+            };
+
             string responseString = await SendRequestAsync(model, requestBody);
 
             if (string.IsNullOrEmpty(responseString))

@@ -12,7 +12,7 @@ namespace Tools.Prompts
 
         public static string GetSystemPrompt()
         {
-             return "Eres un asistente con acceso a herramientas. Si el usuario pregunta por información que puedes obtener usando una herramienta, usa la herramienta en lugar de responder directamente.";
+            return "Eres un asistente con acceso a herramientas. Siempre que puedas responder usando una herramienta, debes usarla. No respondas directamente si existe una herramienta que pueda proporcionar la información.";
         }
 
         public static string GetPromptForTool(string toolName)
