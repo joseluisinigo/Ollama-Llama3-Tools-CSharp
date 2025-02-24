@@ -1,0 +1,176 @@
+# 📌 Changelog: Project Updates & Enhancements
+
+## 📅 **Version History & Updates**
+
+
+## 🆕 **[v1.3.0] - 2025-02-23**
+### 🚀 **New Feature: Dynamic Tool Selection & Persistent Retries**
+A major update that **improves tool selection and execution** in `llama3-groq-tool-use`. Now, the user can **select individual tools dynamically** and **the system keeps retrying failed requests** until a valid response is obtained.
+
+### 🔄 **Key Enhancements**
+- ✅ **New dynamic tool selection menu**:
+  - 📌 Users can now **select individual tools** instead of running all tools at once.
+  - 📌 Option to **go back (`v`) at any stage** to improve navigation.
+  - 📌 The menu updates automatically as new tools are added to the system.
+  
+- ✅ **Improved tool execution logic**:
+  - 🔄 **Persistent retries for tool execution**:
+    - If `get_weather` or `get_stock_price` **fails to receive a valid response**, the system **keeps retrying until it works**.
+    - Each retry **increments a counter** and logs the number of attempts.
+    - The system **only stops retrying when a valid response is obtained**.
+
+- ✅ **Updated tool execution handling**:
+  - 🔹 `get_stock_price` was previously **misconfigured**, causing `get_weather` to be executed instead.
+  - 🔹 Now **each tool executes independently** based on user selection.
+  - 🔹 Fixed **JSON parameter mismatch** for `get_stock_price` (`symbol` instead of `stock_symbol`).
+
+### 📂 **Modified / Added Files**
+#### 📌 **Modified:**
+- 📂 `Program.cs`
+  - 🔹 New **tool selection menu** integrated dynamically.
+  - 🔹 Now detects **all available tools** without hardcoding them.
+  - 🔹 Improved **menu navigation**, allowing users to return (`v`) at any step.
+  - 🔹 Eliminated **the need to press ENTER** when navigating menus.
+
+- 📂 `Models/LlamaGroqToolUse.cs`
+  - 🔹 Now **handles retries** until a valid response is received.
+  - 🔹 **Fixed incorrect execution of `get_stock_price`**, ensuring it no longer calls `get_weather`.
+  - 🔹 **Added attempt count logging**, so users can see how many times a request was retried.
+  - 🔹 Improved **error handling** when a tool does not return a valid response.
+
+- 📂 `Tools/StockPriceTool.cs`
+  - 🔹 **Fixed JSON parsing issues** with `symbol` vs. `stock_symbol`.
+  - 🔹 Ensured correct parameter interpretation to **prevent errors**.
+
+### ⚡ **Usage Example**
+1. Run the project:
+   ```sh
+   dotnet run
+   ```
+2. Select **option `1`** to choose a model:
+   ```
+   📌 Available options:
+   1. Select and run an Ollama model
+   2. Export project code to 'code.txt'
+   3. Exit
+   ```
+3. Choose **model `5` (`llama3-groq-tool-use`)**:
+   ```
+   🔧 Tools available:
+   1. get_weather
+   2. get_stock_price
+   3. 🛠️ Execute all
+   4. 🔙 Back to main menu
+   ```
+4. Select a tool or execute all tools.
+5. If a tool fails to return a response, the system **automatically retries until success**, displaying the number of attempts.
+
+### 🛠 **Planned Improvements**
+- 📂 **Add more tools dynamically**.
+- 📌 **Allow users to configure retry limits**.
+
+
+
+## 🆕 **[v1.2.0] - 2025-02-23**
+### 🚀 **New Feature: `Export Code` Functionality**
+A new feature has been added to **export all project source code** into a file called `code.txt`, while excluding unnecessary files.
+
+### 🔄 **Key Enhancements**
+- ✅ **New `ExportCodeToTxt()` function in `CodeExporter.cs`**:
+  - 🔹 Scans **all project files**.
+  - 🔹 **Generates a `code.txt` file** containing the full source code.
+  - 🔹 **Sorts files** by path for better organization.
+  - 🔹 **Excludes `obj/` and `bin/` folders** to avoid unnecessary files.
+- ✅ **New menu option in `Program.cs`**:
+  - 📌 **Option 2**: Exports the project’s source code to `code.txt`.
+
+### 📂 **Modified / Added Files**
+#### 📌 **New File:**
+- 📂 `Utils/CodeExporter.cs` → Implements `ExportCodeToTxt()` function.
+
+#### 📌 **Modified:**
+- 📂 `Program.cs`  
+  - 🔹 Added a new menu option to execute `CodeExporter.ExportCodeToTxt()`.
+
+### ⚡ **Usage Example**
+1. Run the project:
+   ```sh
+   dotnet run
+   ```
+2. Select **option `2`** in the menu:
+   ```
+   📌 Available options:
+   1. Select and run an Ollama model
+   2. Export project code to 'code.txt'
+   3. Exit
+   ```
+3. Check the `code.txt` file in the project’s root directory.
+
+### 🛠 **Planned Improvements**
+- 🏗 Option to exclude additional files (e.g., `.gitignore`).
+- 📂 Ability to export only specific file types.
+
+🔹 **Now the code is cleaner and more structured!** 🚀🔥
+
+---
+
+## 🆕 **[v1.1.0] - 2025-02-20**
+### 🔧 **Refactoring: Full Atomization of `LlamaGroqToolUse`**
+To improve code maintainability, we **completely atomized the structure** of `LlamaGroqToolUse.cs`.
+
+### 🔄 **Main Changes**
+- ✅ **Separated tool definitions into individual files in `Tools/Definitions/`**.
+- ✅ **Separated prompts into `Tools/Prompts/`**.
+- ✅ **Added `PromptManager.cs` and `ToolDefinitionManager.cs`** to handle configuration dynamically.
+- ✅ **Now `LlamaGroqToolUse.cs` is completely clean and only processes JSON responses.**
+
+### 📂 **Modified / Added Files**
+- 📂 `Models/LlamaGroqToolUse.cs` (Refactored)
+- 📂 `Tools/Definitions/` (New tool definition files)
+- 📂 `Tools/Prompts/` (New prompt structure)
+- 📂 `Tools/ToolDefinitionManager.cs`
+- 📂 `Tools/PromptManager.cs`
+
+---
+
+## 🆕 **[v1.0.0] - 2025-02-15**
+### 🎉 **Initial Version: Ollama Model Integration**
+First stable release with **Ollama model selection and execution**.
+
+### 🔄 **Core Features**
+- ✅ **Implemented Ollama model selection**:
+  - `qwen2.5`
+  - `mistral`
+  - `gemma`
+  - `llama3.2`
+  - `llama3-groq-tool-use`
+- ✅ **Basic interaction with Ollama API**.
+- ✅ **Logging system added using Serilog**.
+
+### 📂 **Core Files**
+- 📂 `Models/GenericOllamaModel.cs`
+- 📂 `Models/LlamaGroqToolUse.cs`
+- 📂 `Program.cs`
+- 📂 `logs.txt` (Logging system)
+
+---
+
+## 📌 **Summary of Changes**
+| Version | Date       | Changes |
+|---------|-----------|---------|
+| v1.2.0  | 2025-02-23 | **Added Export Code feature** (`code.txt`) |
+| v1.1.0  | 2025-02-20 | **Full atomization of `LlamaGroqToolUse`** |
+| v1.0.0  | 2025-02-15 | **Initial stable release** with Ollama integration |
+
+---
+
+## 📌 **How to Update**
+To update your local version, run:
+```sh
+git pull origin main
+```
+For manual updates, re-run:
+```sh
+dotnet build
+dotnet run
+```
