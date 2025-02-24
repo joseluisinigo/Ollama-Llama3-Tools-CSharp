@@ -1,0 +1,226 @@
+2025-02-24 21:46:27.228 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 21:46:38.929 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 21:46:38.931 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 21:46:38.933 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 21:46:38.934 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 21:46:39.508 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es soleado con una temperatura de 1°C.
+2025-02-24 21:46:48.064 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 21:46:48.067 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 21:46:48.068 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 21:46:48.069 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 21:46:48.579 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nublado con una temperatura de 15°C.
+2025-02-24 21:46:49.353 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 21:46:49.355 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 21:46:49.356 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 21:46:49.356 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 21:46:49.858 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nevando con una temperatura de 11°C.
+2025-02-24 21:50:48.217 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 21:50:57.791 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 21:50:57.793 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 21:50:57.796 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 21:50:57.797 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 21:50:58.316 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nevando con una temperatura de 19°C.
+2025-02-24 21:54:09.052 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 21:54:15.704 +01:00 [INF] 🔄 Intento 1: No se han solicitado herramientas. Reintentando...
+2025-02-24 21:54:16.863 +01:00 [INF] 🔄 Intento 2: No se han solicitado herramientas. Reintentando...
+2025-02-24 21:54:18.095 +01:00 [INF] 🔄 Intento 3: No se han solicitado herramientas. Reintentando...
+2025-02-24 21:54:19.332 +01:00 [INF] 🔄 Intento 4: No se han solicitado herramientas. Reintentando...
+2025-02-24 21:54:20.595 +01:00 [INF] 🔄 Intento 5: No se han solicitado herramientas. Reintentando...
+2025-02-24 21:54:25.281 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 21:54:34.266 +01:00 [INF] 📩 Respuesta de mistral: {"model":"mistral","created_at":"2025-02-24T20:54:32.0588044Z","message":{"role":"assistant","content":"¡"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.0832924Z","message":{"role":"assistant","content":"P"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.1035695Z","message":{"role":"assistant","content":"or"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.1214105Z","message":{"role":"assistant","content":" sup"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.1391809Z","message":{"role":"assistant","content":"u"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.1569985Z","message":{"role":"assistant","content":"esto"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.1748114Z","message":{"role":"assistant","content":"!"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.1925867Z","message":{"role":"assistant","content":" Madrid"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.2103571Z","message":{"role":"assistant","content":" es"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.2282444Z","message":{"role":"assistant","content":" la"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.2459541Z","message":{"role":"assistant","content":" ciudad"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.2636844Z","message":{"role":"assistant","content":" con"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.2822161Z","message":{"role":"assistant","content":" más"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.3000754Z","message":{"role":"assistant","content":" pat"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.317369Z","message":{"role":"assistant","content":"ios"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.3354754Z","message":{"role":"assistant","content":" enc"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.3530231Z","message":{"role":"assistant","content":"ant"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.3710729Z","message":{"role":"assistant","content":"adores"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.3905369Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.4083241Z","message":{"role":"assistant","content":" España"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.4266199Z","message":{"role":"assistant","content":"."},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.4443531Z","message":{"role":"assistant","content":" Se"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.4620978Z","message":{"role":"assistant","content":" tr"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.4799294Z","message":{"role":"assistant","content":"ata"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.4977962Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.5156747Z","message":{"role":"assistant","content":" esp"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.5343062Z","message":{"role":"assistant","content":"ac"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.5516073Z","message":{"role":"assistant","content":"ios"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.5693947Z","message":{"role":"assistant","content":" ab"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.5873924Z","message":{"role":"assistant","content":"iert"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.6048716Z","message":{"role":"assistant","content":"os"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.6229785Z","message":{"role":"assistant","content":" al"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.6409223Z","message":{"role":"assistant","content":" a"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.6588302Z","message":{"role":"assistant","content":"ire"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.6767552Z","message":{"role":"assistant","content":" libre"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.6948444Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.7127888Z","message":{"role":"assistant","content":" ubic"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.730563Z","message":{"role":"assistant","content":"ados"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.7482388Z","message":{"role":"assistant","content":" en"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.7661018Z","message":{"role":"assistant","content":" los"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.7838532Z","message":{"role":"assistant","content":" edific"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.8015108Z","message":{"role":"assistant","content":"ios"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.8194738Z","message":{"role":"assistant","content":" trad"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.8372948Z","message":{"role":"assistant","content":"icional"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.8552471Z","message":{"role":"assistant","content":"es"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.8729913Z","message":{"role":"assistant","content":" de"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.8909068Z","message":{"role":"assistant","content":" la"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.9085748Z","message":{"role":"assistant","content":" ciudad"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.9263898Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.9442974Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.9635983Z","message":{"role":"assistant","content":" of"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:32.9819112Z","message":{"role":"assistant","content":"rec"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.0001082Z","message":{"role":"assistant","content":"en"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.0185139Z","message":{"role":"assistant","content":" una"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.0367641Z","message":{"role":"assistant","content":" exc"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.0548858Z","message":{"role":"assistant","content":"el"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.0729151Z","message":{"role":"assistant","content":"ente"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.0911578Z","message":{"role":"assistant","content":" o"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.1093663Z","message":{"role":"assistant","content":"portun"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.1275736Z","message":{"role":"assistant","content":"idad"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.1456433Z","message":{"role":"assistant","content":" para"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.1636921Z","message":{"role":"assistant","content":" dis"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.1814755Z","message":{"role":"assistant","content":"fr"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.1999278Z","message":{"role":"assistant","content":"ut"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.2180581Z","message":{"role":"assistant","content":"ar"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.2361821Z","message":{"role":"assistant","content":" del"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.254124Z","message":{"role":"assistant","content":" cl"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.2721408Z","message":{"role":"assistant","content":"ima"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.2900745Z","message":{"role":"assistant","content":" y"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.3080016Z","message":{"role":"assistant","content":" la"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.3259407Z","message":{"role":"assistant","content":" gas"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.3435631Z","message":{"role":"assistant","content":"tr"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.3617539Z","message":{"role":"assistant","content":"onom"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.3797124Z","message":{"role":"assistant","content":"ía"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.3981095Z","message":{"role":"assistant","content":" españ"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.4159662Z","message":{"role":"assistant","content":"ola"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.4336997Z","message":{"role":"assistant","content":" durante"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.451716Z","message":{"role":"assistant","content":" todo"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.4697023Z","message":{"role":"assistant","content":" el"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.4875284Z","message":{"role":"assistant","content":" año"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.5060254Z","message":{"role":"assistant","content":"."},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.5255801Z","message":{"role":"assistant","content":" De"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.5448828Z","message":{"role":"assistant","content":" hecho"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.5626992Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.5806189Z","message":{"role":"assistant","content":" es"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.5985147Z","message":{"role":"assistant","content":" habit"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.6160002Z","message":{"role":"assistant","content":"ual"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.6347572Z","message":{"role":"assistant","content":" encontr"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.6528054Z","message":{"role":"assistant","content":"arl"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.6708665Z","message":{"role":"assistant","content":"os"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.6890393Z","message":{"role":"assistant","content":" con"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.7070604Z","message":{"role":"assistant","content":" mes"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.72539Z","message":{"role":"assistant","content":"as"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.7431691Z","message":{"role":"assistant","content":","},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.7613048Z","message":{"role":"assistant","content":" s"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.7797825Z","message":{"role":"assistant","content":"illas"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.7978772Z","message":{"role":"assistant","content":" y"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.8162044Z","message":{"role":"assistant","content":" serv"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.8340908Z","message":{"role":"assistant","content":"icio"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.8523549Z","message":{"role":"assistant","content":" comp"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.8704481Z","message":{"role":"assistant","content":"le"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.88861Z","message":{"role":"assistant","content":"to"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.9069046Z","message":{"role":"assistant","content":"."},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.9251556Z","message":{"role":"assistant","content":" "},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.9432349Z","message":{"role":"assistant","content":"¡"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.9619446Z","message":{"role":"assistant","content":"Es"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.9800448Z","message":{"role":"assistant","content":" una"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:33.9980928Z","message":{"role":"assistant","content":" trad"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.0165335Z","message":{"role":"assistant","content":"ición"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.0346859Z","message":{"role":"assistant","content":" que"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.0530804Z","message":{"role":"assistant","content":" te"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.0732926Z","message":{"role":"assistant","content":" inv"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.0918513Z","message":{"role":"assistant","content":"itar"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.1104305Z","message":{"role":"assistant","content":"á"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.1305338Z","message":{"role":"assistant","content":" a"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.1493338Z","message":{"role":"assistant","content":" sent"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.1681103Z","message":{"role":"assistant","content":"ir"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.18766Z","message":{"role":"assistant","content":"te"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.2074824Z","message":{"role":"assistant","content":" en"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.2254369Z","message":{"role":"assistant","content":" casa"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.2452304Z","message":{"role":"assistant","content":"!"},"done":false}
+{"model":"mistral","created_at":"2025-02-24T20:54:34.2644411Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":6000222200,"load_duration":3607778300,"prompt_eval_count":15,"prompt_eval_duration":183000000,"eval_count":122,"eval_duration":2206000000}
+
+2025-02-24 22:23:29.260 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 22:23:40.538 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 22:23:40.541 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 22:23:40.543 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 22:23:40.544 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 22:23:41.062 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es lluvioso con una temperatura de 14°C.
+2025-02-24 22:23:45.134 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 22:23:45.135 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-24 22:23:45.136 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-24 22:23:45.137 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-24 22:23:45.139 +01:00 [WRN] ❌ Intento 1: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-24 22:23:45.947 +01:00 [INF] ✅ Intento 2: Se detectaron herramientas en la respuesta.
+2025-02-24 22:23:45.948 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-24 22:23:45.949 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-24 22:23:45.950 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-24 22:23:45.951 +01:00 [WRN] ❌ Intento 2: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-24 22:23:46.748 +01:00 [INF] ✅ Intento 3: Se detectaron herramientas en la respuesta.
+2025-02-24 22:23:46.749 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-24 22:23:46.750 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-24 22:23:46.751 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-24 22:23:46.752 +01:00 [WRN] ❌ Intento 3: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-24 22:23:47.562 +01:00 [INF] ✅ Intento 4: Se detectaron herramientas en la respuesta.
+2025-02-24 22:23:47.563 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-24 22:23:47.564 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-24 22:23:47.565 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-24 22:23:48.068 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $418.89
+2025-02-24 22:23:53.283 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 22:23:57.775 +01:00 [INF] 🔄 Intento 1: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:23:59.451 +01:00 [INF] 🔄 Intento 2: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:24:01.085 +01:00 [INF] 🔄 Intento 3: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:24:02.866 +01:00 [INF] 🔄 Intento 4: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:24:04.544 +01:00 [INF] 🔄 Intento 5: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:24:09.922 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 22:24:17.892 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 22:24:17.895 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 22:24:17.896 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 22:24:18.411 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es lluvioso con una temperatura de 12°C.
+2025-02-24 22:24:26.479 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 22:24:37.686 +01:00 [INF] 🔄 Intento 1: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:24:38.507 +01:00 [INF] 🔄 Intento 2: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:24:38.953 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 22:24:38.955 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 22:24:38.956 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-24 22:24:39.470 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nevando con una temperatura de 35°C.
+2025-02-24 22:24:44.328 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 22:24:46.651 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 22:24:46.652 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 22:24:46.653 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 22:24:47.162 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nublado con una temperatura de 7°C.
+2025-02-24 22:28:41.446 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 22:28:48.717 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 22:28:48.719 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 22:28:48.721 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 22:28:48.722 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"city":"Madrid"}
+2025-02-24 22:28:49.239 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es lluvioso con una temperatura de 38°C.
+2025-02-24 22:28:56.268 +01:00 [INF] 🔄 Intento 1: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:28:56.840 +01:00 [INF] 🔄 Intento 2: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:28:57.656 +01:00 [INF] 🔄 Intento 3: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:28:58.108 +01:00 [INF] ✅ Intento 4: Se detectaron herramientas en la respuesta.
+2025-02-24 22:28:58.109 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-24 22:28:58.110 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-24 22:28:58.110 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-24 22:28:58.112 +01:00 [WRN] ❌ Intento 4: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-24 22:29:04.279 +01:00 [INF] 🔄 Intento 5: No se han solicitado herramientas. Reintentando...
+2025-02-24 22:29:04.763 +01:00 [INF] ✅ Intento 6: Se detectaron herramientas en la respuesta.
+2025-02-24 22:29:04.765 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-24 22:29:04.766 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-24 22:29:04.766 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"ticker":"AAPL"}
+2025-02-24 22:29:04.767 +01:00 [WRN] ❌ Intento 6: Respuesta inválida de la herramienta 'get_stock_price'. Reintentando...
+2025-02-24 22:29:05.209 +01:00 [INF] ✅ Intento 7: Se detectaron herramientas en la respuesta.
+2025-02-24 22:29:05.211 +01:00 [INF] 🔎 Buscando herramienta 'get_stock_price' en ToolManager...
+2025-02-24 22:29:05.211 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
+2025-02-24 22:29:05.212 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
+2025-02-24 22:29:05.724 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $433.86
