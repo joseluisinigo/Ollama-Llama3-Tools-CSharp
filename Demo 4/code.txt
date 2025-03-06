@@ -924,19 +924,18 @@ namespace Tools.Definitions
         {
             return new
             {
-                name = "get_os_info",
+                name = "get_system_info",
                 description = "Determina si el sistema operativo actual es Linux o Windows",
                 parameters = new
                 {
                     type = "object",
                     properties = new Dictionary<string, object>(),
-                    required = new string[] { }
+                    required = Array.Empty<string>()
                 }
             };
         }
     }
 }
-
 
 
 
@@ -1212,12 +1211,13 @@ namespace Tools
 using System;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace Tools
 {
     public class SystemInfoTool : ITool
     {
-        public string Name => "get_os_info";
+        public string Name => "get_system_info";
 
         public Task<string> ExecuteAsync(string argumentsJson)
         {
@@ -1225,13 +1225,21 @@ namespace Tools
                 ? "Windows"
                 : RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
                     ? "Linux"
-                    : "Unknown";
+                    : "Desconocido";
+
+            if (osName == "Windows")
+            {
+                string hostName = Environment.MachineName;
+                var drives = DriveInfo.GetDrives();
+                string driveLetters = string.Join(", ", Array.ConvertAll(drives, d => d.Name.TrimEnd('\\')));
+
+                return Task.FromResult($"El sistema operativo actual es: {osName}\nNombre del equipo: {hostName}\nUnidades disponibles: {driveLetters}");
+            }
 
             return Task.FromResult($"El sistema operativo actual es: {osName}");
         }
     }
 }
-
 
 
 

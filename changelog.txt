@@ -1,0 +1,119 @@
+
+# 📌 Changelog: Project Updates & Enhancements  
+
+## 📅 **Version History & Updates**  
+
+## 🆕 **[v1.4.0] - 2025-02-24**  
+### 🚀 **Fixes & Improvements for Llama3.2, Mistral, and Qwen2.5**  
+This update brings major fixes to **Mistral, Llama3.2, and Qwen2.5** to ensure they execute tools correctly, avoiding unnecessary retries and misconfigurations.  
+
+### 🔄 **Key Enhancements**  
+- ✅ **Fixed incorrect model names in API calls**  
+  - Ensured that each model (`mistral`, `llama3.2`, `qwen2.5`) uses the correct **API model name**.  
+  - Previously, models were being sent with their **class names** (e.g., `QwenOllamaModel` instead of `qwen2.5`).  
+
+- ✅ **Refined Mistral behavior to reduce long responses**  
+  - Mistral now **avoids generating unnecessary text responses** before executing tools.  
+  - Added **retries with a cutoff limit** (3 attempts) to prevent infinite loops.  
+
+- ✅ **Fixed Llama3.2 calling incorrect tools**  
+  - Previously, it sometimes executed `get_weather` even when `get_stock_price` was selected.  
+  - Now, it properly detects and runs **only the selected tool**.  
+
+- ✅ **Qwen2.5 now directly executes tools without asking for more details**  
+  - It was previously **asking for a location** instead of just using `get_weather`.  
+  - Now **Madrid is set as a default location** in `ConfigurationManager.cs`.  
+  - Added **response validation** to ensure the model correctly triggers a tool.  
+
+- ✅ **Improved request handling in `ConfigurationManager.cs`**  
+  - Ensured that `tool_choice: "required"` is always included in the request.  
+  - Default **fallback values** (like Madrid for weather queries) to prevent unnecessary clarifications.  
+
+### 📂 **Modified / Added Files**  
+#### 📌 **Modified:**  
+- 📂 `Program.cs`  
+  - 🔹 Ensured **each model correctly passes its name** when making API calls.  
+  - 🔹 **Export Code feature now works properly**.  
+  - 🔹 **Refactored `ShowToolMenu()`** to use a standardized tool execution method.  
+
+- 📂 `Models/MistralToolUse.cs`  
+  - 🔹 Added **retries with a limit** to prevent infinite loops.  
+  - 🔹 Improved **tool execution flow** to avoid unnecessary responses.  
+
+- 📂 `Models/Llama3ToolUse.cs`  
+  - 🔹 Fixed **incorrect tool execution** when selecting a specific tool.  
+  - 🔹 Ensured it no longer defaults to `get_weather`.  
+
+- 📂 `Models/QwenOllamaModel.cs`  
+  - 🔹 **Qwen now directly executes tools without asking for more info**.  
+  - 🔹 **Properly processes API responses** and prevents unnecessary retries.  
+
+- 📂 `Tools/ConfigurationManager.cs`  
+  - 🔹 **Set default values for missing arguments** (e.g., `get_weather` now defaults to Madrid).  
+  - 🔹 Ensured **`tool_choice: "required"` is always included**.  
+
+### ⚡ **Usage Example**  
+1. Run the project:  
+   ```sh
+   dotnet run
+   ```  
+2. Select **option `1`** to choose a model:  
+   ```
+   📌 Available options:
+   1. Select and run an Ollama model
+   2. Export project code to 'code.txt'
+   3. Exit
+   ```  
+3. Choose **Mistral, Llama3.2, or Qwen2.5**:  
+   ```
+   1. qwen2.5  
+   2. mistral  
+   3. llama3.2  
+   ```  
+4. Select a tool, and it **executes immediately without unnecessary responses or retries**.  
+
+### 🛠 **Planned Improvements**  
+- 🏗 **Add better handling for model-specific quirks** (e.g., Mistral's tendency to generate too much text).  
+- 📂 **Implement configuration settings for retry limits** instead of hardcoding them.  
+
+---
+
+## 🆕 **[v1.3.0] - 2025-02-23**  
+### 🚀 **New Feature: Dynamic Tool Selection & Persistent Retries**  
+A major update that **improves tool selection and execution** in `llama3-groq-tool-use`.  
+
+### 🔄 **Key Enhancements**  
+- ✅ **New dynamic tool selection menu**  
+- ✅ **Improved tool execution logic** with **persistent retries**  
+- ✅ **Fixed tool execution mismatches**  
+
+---
+
+## 🆕 **[v1.2.0] - 2025-02-23**  
+### 🚀 **New Feature: `Export Code` Functionality**  
+Added `CodeExporter.cs` to allow exporting all project source code into a `code.txt` file.  
+
+---
+
+## 📌 **Summary of Changes**  
+| Version | Date       | Changes |  
+|---------|-----------|---------|  
+| v1.4.0  | 2025-02-24 | **Fixed model execution for Llama3.2, Mistral, and Qwen2.5** |  
+| v1.3.0  | 2025-02-23 | **Added Dynamic Tool Selection & Persistent Retries** |  
+| v1.2.0  | 2025-02-23 | **Added Export Code feature** (`code.txt`) |  
+| v1.1.0  | 2025-02-20 | **Full atomization of `LlamaGroqToolUse`** |  
+| v1.0.0  | 2025-02-15 | **Initial stable release** with Ollama integration |  
+
+---
+
+## 📌 **How to Update**  
+To update your local version, run:  
+```sh
+git pull origin main
+```  
+For manual updates, re-run:  
+```sh
+dotnet build  
+dotnet run  
+```  
+

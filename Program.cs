@@ -42,7 +42,7 @@ class Program
         var request = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
-            RequestUri = new Uri("http://localhost:11434/api/chat"),
+            RequestUri = new Uri("http://192.168.1.111:11434/api/chat"),
             Content = new StringContent(jsonRequest, Encoding.UTF8, "application/json")
         };
 
