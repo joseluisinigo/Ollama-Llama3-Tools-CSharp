@@ -11554,3 +11554,12 @@ The current weather in Madrid is: [Checking]
 2025-02-24 23:14:33.887 +01:00 [INF] ✅ Herramienta 'get_stock_price' encontrada en ToolManager.
 2025-02-24 23:14:33.888 +01:00 [INF] 🔍 Ejecutando herramienta 'get_stock_price' con argumentos: {"symbol":"AAPL"}
 2025-02-24 23:14:34.393 +01:00 [INF] ✅ Resultado de 'get_stock_price': El precio actual de AAPL es $450.35
+2025-02-24 23:31:57.265 +01:00 [INF] 🚀 Iniciando la interacción con Ollama...
+2025-02-24 23:31:59.928 +01:00 [INF] ⚙️ Creando RequestBody para modelo: mistral, herramienta: get_weather
+2025-02-24 23:32:00.393 +01:00 [INF] 📡 Enviando solicitud a Ollama: Modelo = mistral, RequestBody = {"model":"mistral","messages":[{"role":"system","content":"Eres un asistente con acceso a herramientas. Nunca respondas directamente si existe una herramienta que pueda proporcionar la informaci\u00F3n. Siempre usa las herramientas disponibles para responder."},{"role":"user","content":"Usa la herramienta \u0027get_weather\u0027 para decirme el clima actual en Madrid."}],"tools":[{"name":"get_weather","description":"Obtiene el clima actual de una ubicaci\u00F3n dada","parameters":{"type":"object","properties":{"location":{"type":"string","description":"El nombre de la ciudad o ubicaci\u00F3n"}},"required":["location"]},{"name":"get_stock_price","description":"Obtiene el precio actual de una acci\u00F3n","parameters":{"type":"object","properties":{"symbol":{"type":"string","description":"El s\u00EDmbolo de la acci\u00F3n (por ejemplo, AAPL, GOOGL)"}},"required":["symbol"]}],"tool_choice":"required","stream":false}
+2025-02-24 23:32:07.745 +01:00 [INF] 📩 Respuesta de Ollama (mistral): {"model":"mistral","created_at":"2025-02-24T22:32:07.741391Z","message":{"role":"assistant","content":"","tool_calls":[{"function":{"name":"get_weather","arguments":{"location":"Madrid"}}]},"done_reason":"stop","done":true,"total_duration":5271555400,"load_duration":4626167600,"prompt_eval_count":148,"prompt_eval_duration":245000000,"eval_count":21,"eval_duration":371000000}
+2025-02-24 23:32:07.755 +01:00 [INF] ✅ Intento 1: Se detectaron herramientas en la respuesta.
+2025-02-24 23:32:07.757 +01:00 [INF] 🔎 Buscando herramienta 'get_weather' en ToolManager...
+2025-02-24 23:32:07.760 +01:00 [INF] ✅ Herramienta 'get_weather' encontrada en ToolManager.
+2025-02-24 23:32:07.760 +01:00 [INF] 🔍 Ejecutando herramienta 'get_weather' con argumentos: {"location":"Madrid"}
+2025-02-24 23:32:08.276 +01:00 [INF] ✅ Resultado de 'get_weather': El clima actual en Madrid es nevando con una temperatura de -10°C.

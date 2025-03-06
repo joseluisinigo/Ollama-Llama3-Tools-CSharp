@@ -34,7 +34,7 @@ namespace Models
 
     try
     {
-        var response = await client.PostAsync("http://localhost:11434/api/chat", content);
+        var response = await client.PostAsync("http://192.168.1.111:11434/api/chat", content);
         string responseText = await response.Content.ReadAsStringAsync();
 
         // 🔍 VERIFICACIÓN: Confirmar que la respuesta es del modelo correcto

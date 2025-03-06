@@ -73,7 +73,7 @@ class Program
         string jsonContent = JsonSerializer.Serialize(requestBody);
         var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-        var response = await client.PostAsync("http://localhost:11434/api/generate", content);
+        var response = await client.PostAsync("http://192.168.1.111:11434/api/generate", content);
         string responseString = await response.Content.ReadAsStringAsync();
 
         Console.WriteLine("🔹 Ollama Response:");
@@ -129,7 +129,7 @@ And select **option 2**.
 LM Studio supports **running models locally**, but it **does not support function calling**.  
 If using LM Studio, change the API endpoint in your code:
 ```csharp
-var response = await client.PostAsync("http://localhost:1234/v1/chat/completions", content);
+var response = await client.PostAsync("http://192.168.1.111:1234/v1/chat/completions", content);
 ```
 
 ---
@@ -213,7 +213,7 @@ Y selecciona **la opción 2**.
 LM Studio permite **ejecutar modelos localmente**, pero **NO admite `function calling`**.  
 Si usas LM Studio, cambia la API en el código:
 ```csharp
-var response = await client.PostAsync("http://localhost:1234/v1/chat/completions", content);
+var response = await client.PostAsync("http://192.168.1.111:1234/v1/chat/completions", content);
 ```
 
 ---
