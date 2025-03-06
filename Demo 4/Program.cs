@@ -83,7 +83,7 @@ class Program
 
         var modelHandlers = new Dictionary<string, OllamaModelBase>
         {
-            { "qwen2.5", new QwenOllamaModel() },
+            { "qwen2.5:32b", new QwenOllamaModel() },
             { "mistral", new MistralToolUse() },
             { "gemma", new GenericOllamaModel() },
             { "llama3.2", new Llama3ToolUse() },
