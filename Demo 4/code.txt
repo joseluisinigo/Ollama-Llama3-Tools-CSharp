@@ -1,0 +1,1418 @@
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Demo 2.csproj
+====================================
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Demo_2</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.2.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Text.Json" Version="9.0.2" />
+  </ItemGroup>
+
+</Project>
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Demo 2.sln
+====================================
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo 2", "Demo 2.csproj", "{6326AED0-0755-31E1-AA82-574AF42816D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6326AED0-0755-31E1-AA82-574AF42816D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6326AED0-0755-31E1-AA82-574AF42816D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6326AED0-0755-31E1-AA82-574AF42816D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6326AED0-0755-31E1-AA82-574AF42816D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35A26957-4723-4C09-8F54-4F4B63650805}
+	EndGlobalSection
+EndGlobal
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Models\GenericOllamaModel.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Serilog;
+using Tools;
+
+namespace Models
+{
+    public class GenericOllamaModel : OllamaModelBase
+    {
+        public override async Task HandleRequestAsync(string model)
+        {
+            await HandleRequestAsync(model, null);
+        }
+
+        public override async Task HandleRequestAsync(string model, string? toolName)
+        {
+            int attempts = 0;
+            while (true)
+            {
+                attempts++;
+                string responseString = await SendRequestAsync(model, ConfigurationManager.GetRequestBody(model, toolName ?? "get_weather"));
+
+                if (string.IsNullOrEmpty(responseString))
+                {
+                    continue;
+                }
+
+                var responseJson = JsonDocument.Parse(responseString);
+                if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
+                {
+                    continue;
+                }
+
+                if (!messageElement.TryGetProperty("tool_calls", out var toolCallsElement) || toolCallsElement.GetArrayLength() == 0)
+                {
+                    Log.Information($"🔄 Intento {attempts}: No se han solicitado herramientas. Reintentando...");
+                    continue;
+                }
+
+                bool executedSuccessfully = false;
+
+                foreach (var toolCall in toolCallsElement.EnumerateArray())
+                {
+                    var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
+                    if (!string.IsNullOrEmpty(toolName) && functionName != toolName) continue;
+
+                    var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
+                    var tool = ToolManager.GetToolByName(functionName);
+                    if (tool == null)
+                    {
+                        Log.Error($"❌ No se encontró la herramienta '{functionName}' en ToolManager.");
+                        continue;
+                    }
+
+                    Log.Information($"🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}");
+                    var result = await tool.ExecuteAsync(argumentsJson);
+
+                    if (result.Contains("⚠️ Error")) 
+                    {
+                        Log.Warning($"❌ Intento {attempts}: Respuesta inválida de la herramienta '{functionName}'. Reintentando...");
+                        continue;
+                    }
+
+                    Log.Information($"✅ Resultado de '{functionName}': {result}");
+                    Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                    executedSuccessfully = true;
+                    break;
+                }
+
+                if (executedSuccessfully) break;
+            }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Models\Llama3ToolUse.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Serilog;
+using Tools;
+
+namespace Models
+{
+    public class Llama3ToolUse : OllamaModelBase
+    {
+        public override async Task HandleRequestAsync(string model)
+        {
+            await HandleRequestAsync(model, null);
+        }
+
+        public override async Task HandleRequestAsync(string model, string? toolName)
+        {
+            Log.Information($"🚀 Ejecutando modelo {model} con herramienta: {toolName ?? "ninguna"}");
+
+            string responseString = await SendRequestAsync(model, ConfigurationManager.GetRequestBody(model, toolName ?? "get_weather"));
+
+            if (string.IsNullOrEmpty(responseString))
+            {
+                Log.Warning("⚠️ No se recibió respuesta válida de Ollama.");
+                return;
+            }
+
+            var responseJson = JsonDocument.Parse(responseString);
+            if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
+            {
+                Log.Warning("⚠️ No se encontró la clave 'message' en la respuesta de Ollama.");
+                return;
+            }
+
+            // Si hay tool_calls, ejecutamos la herramienta correspondiente
+            if (messageElement.TryGetProperty("tool_calls", out var toolCallsElement) && toolCallsElement.GetArrayLength() > 0)
+            {
+                Log.Information($"✅ Se detectaron herramientas en la respuesta de {model}.");
+                
+                foreach (var toolCall in toolCallsElement.EnumerateArray())
+                {
+                    string functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
+                    string argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
+
+                    var tool = ToolManager.GetToolByName(functionName);
+                    if (tool == null)
+                    {
+                        Log.Error($"❌ No se encontró la herramienta '{functionName}' en ToolManager.");
+                        continue;
+                    }
+
+                    Log.Information($"🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}");
+                    var result = await tool.ExecuteAsync(argumentsJson);
+
+                    if (result.Contains("⚠️ Error"))
+                    {
+                        Log.Warning($"❌ Respuesta inválida de la herramienta '{functionName}'. Reintentando...");
+                        continue;
+                    }
+
+                    Log.Information($"✅ Resultado de '{functionName}': {result}");
+                    Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                }
+            }
+            else
+            {
+                // Si no hay tool_calls, imprimimos el contenido del mensaje
+                string content = messageElement.GetProperty("content").GetString() ?? "(sin contenido)";
+                Log.Information("📩 Respuesta de {model}: {response}", model, content);
+                Console.WriteLine($"🔹 Respuesta de {model}: {content}");
+            }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Models\LlamaGroqToolUse.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Serilog;
+using Tools;
+
+namespace Models
+{
+    public class LlamaGroqToolUse : OllamaModelBase
+    {
+        public override async Task HandleRequestAsync(string model)
+        {
+            await HandleRequestAsync(model, null);
+        }
+
+        public override async Task HandleRequestAsync(string model, string? toolName)
+
+        {
+            int attempts = 0;
+            while (true)
+            {
+                attempts++;
+                string responseString = await SendRequestAsync(model, ConfigurationManager.GetRequestBody(model, toolName ?? "get_weather"));
+
+                if (string.IsNullOrEmpty(responseString))
+                {
+                    continue;
+                }
+
+                var responseJson = JsonDocument.Parse(responseString);
+                if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
+                {
+                    continue;
+                }
+
+                if (!messageElement.TryGetProperty("tool_calls", out var toolCallsElement) || toolCallsElement.GetArrayLength() == 0)
+                {
+                    Log.Information($"🔄 Intento {attempts}: No se han solicitado herramientas. Reintentando...");
+                    continue;
+                }
+
+                Log.Information($"✅ Intento {attempts}: Se detectaron herramientas en la respuesta.");
+
+                bool executedSuccessfully = false;
+
+                foreach (var toolCall in toolCallsElement.EnumerateArray())
+                {
+                    var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
+                    if (!string.IsNullOrEmpty(toolName) && functionName != toolName) continue;
+
+                    var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
+                    var tool = ToolManager.GetToolByName(functionName);
+                    if (tool == null)
+                    {
+                        Log.Error($"❌ No se encontró la herramienta '{functionName}' en ToolManager.");
+                        continue;
+                    }
+
+                    Log.Information($"🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}");
+                    var result = await tool.ExecuteAsync(argumentsJson);
+
+                    if (result.Contains("⚠️ Error")) 
+                    {
+                        Log.Warning($"❌ Intento {attempts}: Respuesta inválida de la herramienta '{functionName}'. Reintentando...");
+                        continue;
+                    }
+
+                    Log.Information($"✅ Resultado de '{functionName}': {result}");
+                    Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                    executedSuccessfully = true;
+                    break; // Sale del bucle cuando obtiene un resultado válido
+                }
+
+                if (executedSuccessfully) break;
+            }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Models\MistralToolUse.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Serilog;
+using Tools;
+
+namespace Models
+{
+    public class MistralToolUse : OllamaModelBase
+    {
+        public override async Task HandleRequestAsync(string model)
+        {
+            await HandleRequestAsync(model, null);
+        }
+
+        public override async Task HandleRequestAsync(string model, string? toolName)
+
+        {
+            int attempts = 0;
+            while (true)
+            {
+                attempts++;
+                string responseString = await SendRequestAsync(model, ConfigurationManager.GetRequestBody(model, toolName ?? "get_weather"));
+
+                if (string.IsNullOrEmpty(responseString))
+                {
+                    continue;
+                }
+
+                var responseJson = JsonDocument.Parse(responseString);
+                if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
+                {
+                    continue;
+                }
+
+                if (!messageElement.TryGetProperty("tool_calls", out var toolCallsElement) || toolCallsElement.GetArrayLength() == 0)
+                {
+                    Log.Information($"🔄 Intento {attempts}: No se han solicitado herramientas. Reintentando...");
+                    continue;
+                }
+
+                Log.Information($"✅ Intento {attempts}: Se detectaron herramientas en la respuesta.");
+
+                bool executedSuccessfully = false;
+
+                foreach (var toolCall in toolCallsElement.EnumerateArray())
+                {
+                    var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
+                    if (!string.IsNullOrEmpty(toolName) && functionName != toolName) continue;
+
+                    var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
+                    var tool = ToolManager.GetToolByName(functionName);
+                    if (tool == null)
+                    {
+                        Log.Error($"❌ No se encontró la herramienta '{functionName}' en ToolManager.");
+                        continue;
+                    }
+
+                    Log.Information($"🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}");
+                    var result = await tool.ExecuteAsync(argumentsJson);
+
+                    if (result.Contains("⚠️ Error")) 
+                    {
+                        Log.Warning($"❌ Intento {attempts}: Respuesta inválida de la herramienta '{functionName}'. Reintentando...");
+                        continue;
+                    }
+
+                    Log.Information($"✅ Resultado de '{functionName}': {result}");
+                    Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                    executedSuccessfully = true;
+                    break;
+                }
+
+                if (executedSuccessfully) break;
+            }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Models\OllamaModelBase.cs
+====================================
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Serilog;
+
+namespace Models
+{
+    public abstract class OllamaModelBase
+    {
+        protected static readonly HttpClient client = new HttpClient();
+
+        public virtual async Task HandleRequestAsync(string model)
+        {
+            // Implementación base vacía o mensaje de advertencia
+            Log.Warning("⚠️ No se ha implementado HandleRequestAsync en la subclase.");
+        }
+
+        public virtual async Task HandleRequestAsync(string model, string? toolName)
+        {
+            // Implementación base para herramientas
+            Log.Warning("⚠️ No se ha implementado HandleRequestAsync con herramientas en la subclase.");
+        }
+
+        protected async Task<string> SendRequestAsync(string model, object requestBody)
+{
+    string jsonContent = JsonSerializer.Serialize(requestBody);
+
+    // 🔍 VERIFICACIÓN: Imprimir qué modelo se está enviando en la petición
+    Log.Information($"📡 Enviando solicitud a Ollama: Modelo = {model}, RequestBody = {jsonContent}");
+
+    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+    try
+    {
+        var response = await client.PostAsync("http://192.168.1.111:11434/api/chat", content);
+        string responseText = await response.Content.ReadAsStringAsync();
+
+        // 🔍 VERIFICACIÓN: Confirmar que la respuesta es del modelo correcto
+        Log.Information($"📩 Respuesta de Ollama ({model}): {responseText}");
+
+        return responseText;
+    }
+    catch (Exception ex)
+    {
+        Log.Error("❌ Error en la solicitud a Ollama: {error}", ex.Message);
+        return string.Empty;
+    }
+}
+
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Models\Qwen2.5ToolUse.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Serilog;
+using Tools;
+
+namespace Models
+{
+    public class Qwen2_5ToolUse : OllamaModelBase
+    {
+        public override async Task HandleRequestAsync(string model)
+        {
+            await HandleRequestAsync(model, null);
+        }
+
+        public override async Task HandleRequestAsync(string model, string? toolName)
+
+        {
+            int attempts = 0;
+            while (true)
+            {
+                attempts++;
+                string responseString = await SendRequestAsync(model, ConfigurationManager.GetRequestBody(model, toolName ?? "get_weather"));
+
+                if (string.IsNullOrEmpty(responseString))
+                {
+                    continue;
+                }
+
+                var responseJson = JsonDocument.Parse(responseString);
+                if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
+                {
+                    continue;
+                }
+
+                if (!messageElement.TryGetProperty("tool_calls", out var toolCallsElement) || toolCallsElement.GetArrayLength() == 0)
+                {
+                    Log.Information($"🔄 Intento {attempts}: No se han solicitado herramientas. Reintentando...");
+                    continue;
+                }
+
+                Log.Information($"✅ Intento {attempts}: Se detectaron herramientas en la respuesta.");
+
+                bool executedSuccessfully = false;
+
+                foreach (var toolCall in toolCallsElement.EnumerateArray())
+                {
+                    var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
+                    if (!string.IsNullOrEmpty(toolName) && functionName != toolName) continue;
+
+                    var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
+                    var tool = ToolManager.GetToolByName(functionName);
+                    if (tool == null)
+                    {
+                        Log.Error($"❌ No se encontró la herramienta '{functionName}' en ToolManager.");
+                        continue;
+                    }
+
+                    Log.Information($"🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}");
+                    var result = await tool.ExecuteAsync(argumentsJson);
+
+                    if (result.Contains("⚠️ Error")) 
+                    {
+                        Log.Warning($"❌ Intento {attempts}: Respuesta inválida de la herramienta '{functionName}'. Reintentando...");
+                        continue;
+                    }
+
+                    Log.Information($"✅ Resultado de '{functionName}': {result}");
+                    Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                    executedSuccessfully = true;
+                    break;
+                }
+
+                if (executedSuccessfully) break;
+            }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Models\QwenOllamaModel.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Serilog;
+using Tools;
+using Tools.Prompts;
+using Tools.Messages;
+
+namespace Models
+{
+    public class QwenOllamaModel : OllamaModelBase
+    {
+        public override async Task HandleRequestAsync(string model)
+        {
+            await HandleRequestAsync(model, null);
+        }
+
+        public override async Task HandleRequestAsync(string model, string? toolName)
+        {
+            int attempts = 0;
+            while (true)
+            {
+                attempts++;
+
+                var requestBody = new
+                {
+                    model,
+                    messages = new[]
+                    {
+                        new { role = "system", content = PromptManager.GetSystemPrompt() },
+                        new { role = "user", content = $"Usa la herramienta '{toolName ?? "get_weather"}' para responder." }
+                    },
+                    tools = ToolDefinitionManager.GetAllToolDefinitions(),
+                    tool_choice = "required",
+                    stream = false
+                };
+
+                string responseString = await SendRequestAsync(model, requestBody);
+
+                if (string.IsNullOrEmpty(responseString))
+                {
+                    Log.Warning($"⚠️ Intento {attempts}: No se recibió respuesta válida de Qwen.");
+                    continue;
+                }
+
+                var responseJson = JsonDocument.Parse(responseString);
+
+                if (!responseJson.RootElement.TryGetProperty("message", out var messageElement))
+                {
+                    continue;
+                }
+
+                if (!messageElement.TryGetProperty("tool_calls", out var toolCallsElement) || toolCallsElement.GetArrayLength() == 0)
+                {
+                    Log.Information($"🔄 Intento {attempts}: No se han solicitado herramientas. Reintentando...");
+                    continue;
+                }
+
+                Log.Information($"✅ Intento {attempts}: Se detectaron herramientas en la respuesta.");
+
+                bool executedSuccessfully = false;
+
+                foreach (var toolCall in toolCallsElement.EnumerateArray())
+                {
+                    var functionName = toolCall.GetProperty("function").GetProperty("name").GetString();
+                    
+                    // Si se seleccionó una herramienta específica, ignoramos cualquier otra
+                    if (!string.IsNullOrEmpty(toolName) && functionName != toolName) 
+                    {
+                        Log.Warning($"⚠️ El modelo intentó ejecutar '{functionName}', pero se esperaba '{toolName}'. Reintentando...");
+                        continue;
+                    }
+
+                    var argumentsJson = toolCall.GetProperty("function").GetProperty("arguments").ToString();
+                    var tool = ToolManager.GetToolByName(functionName);
+                    if (tool == null)
+                    {
+                        Log.Error($"❌ No se encontró la herramienta '{functionName}' en ToolManager.");
+                        continue;
+                    }
+
+                    Log.Information($"🔍 Ejecutando herramienta '{functionName}' con argumentos: {argumentsJson}");
+                    var result = await tool.ExecuteAsync(argumentsJson);
+
+                    if (result.Contains("⚠️ Error")) 
+                    {
+                        Log.Warning($"❌ Intento {attempts}: Respuesta inválida de la herramienta '{functionName}'. Reintentando...");
+                        continue;
+                    }
+
+                    Log.Information($"✅ Resultado de '{functionName}': {result}");
+                    Console.WriteLine($"✅ Resultado de la herramienta '{functionName}': {result}");
+                    executedSuccessfully = true;
+                    break;
+                }
+
+                if (executedSuccessfully) break;
+            }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Program.cs
+====================================
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Serilog;
+using Models;
+using Tools;
+using Utils; // Asegura que CodeExporter esté disponible
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File("logs.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
+        Console.CancelKeyPress += (sender, eventArgs) =>
+        {
+            Console.WriteLine("\n👋 Saliendo...");
+            eventArgs.Cancel = true;
+            Environment.Exit(0);
+        };
+
+        while (true)
+        {
+            Console.WriteLine("\n📌 Opciones disponibles:");
+            Console.WriteLine("1. Elegir y ejecutar un modelo de Ollama");
+            Console.WriteLine("2. Exportar código del proyecto a 'code.txt'");
+            Console.WriteLine("3. Salir (o presiona 'q' para salir inmediatamente)");
+
+            Console.Write("\nSelecciona una opción: ");
+
+            ConsoleKeyInfo key = Console.ReadKey(intercept: true);
+            if (key.Key == ConsoleKey.Q)
+            {
+                Console.WriteLine("\n👋 Saliendo...");
+                return;
+            }
+
+            string menuChoice = key.KeyChar.ToString();
+
+            switch (menuChoice)
+            {
+                case "1":
+                    await RunOllamaModel();
+                    break;
+                case "2":
+                    Console.WriteLine("\n📤 Exportando código...");
+                    ExportProjectCode();
+                    break;
+                case "3":
+                    Console.WriteLine("👋 Saliendo...");
+                    return;
+                default:
+                    Console.WriteLine("\n❌ Opción no válida, intenta de nuevo.");
+                    break;
+            }
+        }
+    }
+
+    static void ExportProjectCode()
+    {
+        Log.Information("📤 Exportando código...");
+
+        try
+        {
+            CodeExporter.ExportCodeToTxt(Directory.GetCurrentDirectory());
+            Console.WriteLine("\n✅ Código exportado correctamente a 'code.txt'");
+        }
+        catch (Exception ex)
+        {
+            Log.Error("❌ Error al exportar código: {error}", ex.Message);
+        }
+    }
+
+    static async Task RunOllamaModel()
+    {
+        Log.Information("🚀 Iniciando la interacción con Ollama...");
+
+        var modelHandlers = new Dictionary<string, OllamaModelBase>
+        {
+            { "qwen2.5", new QwenOllamaModel() },
+            { "mistral", new MistralToolUse() },
+            { "gemma", new GenericOllamaModel() },
+            { "llama3.2", new Llama3ToolUse() },
+            { "llama3-groq-tool-use", new LlamaGroqToolUse() }
+        };
+
+        Console.WriteLine("\nModelos disponibles en Ollama:");
+        int index = 1;
+        foreach (var model in modelHandlers.Keys)
+        {
+            Console.WriteLine($"{index}. {model} (Datos generales y conversación.)");
+            index++;
+        }
+
+        Console.Write("\nElige un modelo (1-{0}) o presiona 'v' para volver: ", modelHandlers.Count);
+
+        ConsoleKeyInfo key = Console.ReadKey(intercept: true);
+        if (key.Key == ConsoleKey.V) return;
+
+        if (!int.TryParse(key.KeyChar.ToString(), out int choice) || choice < 1 || choice > modelHandlers.Count)
+        {
+            Console.WriteLine("\n❌ Opción no válida.");
+            return;
+        }
+
+        string selectedModel = modelHandlers.Keys.ElementAt(choice - 1);
+        Console.WriteLine($"\n✅ Modelo seleccionado: {selectedModel}");
+
+        if (modelHandlers.ContainsKey(selectedModel))
+        {
+            await ShowToolMenu(selectedModel, modelHandlers[selectedModel]);
+        }
+        else
+        {
+            Console.WriteLine("❌ Error: Modelo no encontrado.");
+        }
+    }
+
+    static async Task ShowToolMenu(string modelName, OllamaModelBase modelHandler)
+    {
+        var tools = GetToolList();
+        if (tools.Count == 0)
+        {
+            Console.WriteLine("⚠️ No hay herramientas disponibles.");
+            return;
+        }
+
+        while (true)
+        {
+            Console.WriteLine("\n🔧 Herramientas disponibles:");
+            for (int i = 0; i < tools.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {tools[i]}");
+            }
+            Console.WriteLine($"{tools.Count + 1}. 🛠️ Ejecutar todas");
+            Console.WriteLine($"{tools.Count + 2}. 🔙 Volver al menú anterior");
+
+            Console.Write("\nElige una herramienta (1-{0}) o presiona 'v' para volver: ", tools.Count + 2);
+
+            ConsoleKeyInfo key = Console.ReadKey(intercept: true);
+            Console.WriteLine(); // Para evitar que el input quede pegado
+
+            if (key.Key == ConsoleKey.V || key.KeyChar.ToString() == (tools.Count + 2).ToString())
+            {
+                Console.WriteLine("\n🔙 Volviendo al menú principal...");
+                return;
+            }
+
+            if (!int.TryParse(key.KeyChar.ToString(), out int toolChoice) || toolChoice < 1 || toolChoice > tools.Count + 2)
+            {
+                Console.WriteLine("\n❌ Opción no válida.");
+                continue;
+            }
+
+            if (toolChoice == tools.Count + 1)
+            {
+                await RunAllTools(modelName, modelHandler);
+            }
+            else if (toolChoice == tools.Count + 2)
+            {
+                return;
+            }
+            else
+            {
+                string selectedTool = tools[toolChoice - 1];
+                Console.WriteLine($"\n🔧 Ejecutando herramienta: {selectedTool}");
+                await modelHandler.HandleRequestAsync(modelName, selectedTool);
+            }
+        }
+    }
+
+    static async Task RunAllTools(string modelName, OllamaModelBase modelHandler)
+    {
+        foreach (var tool in GetToolList())
+        {
+            Console.WriteLine($"\n🔧 Ejecutando herramienta: {tool}");
+            await modelHandler.HandleRequestAsync(modelName, tool);
+        }
+    }
+
+    static List<string> GetToolList()
+    {
+        return ToolDefinitionManager.GetAllToolDefinitions()
+            .Select(tool => tool.GetType().GetProperty("name")?.GetValue(tool)?.ToString() ?? "Desconocido")
+            .ToList();
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\ConfigurationManager.cs
+====================================
+using System;
+using Tools.Prompts;
+using Tools.Messages;
+using Serilog;
+
+namespace Tools
+{
+    public static class ConfigurationManager
+    {
+      public static object GetRequestBody(string model, string toolName)
+{
+    Log.Information($"⚙️ Creando RequestBody para modelo: {model}, herramienta: {toolName}");
+
+    var tools = ToolDefinitionManager.GetAllToolDefinitions();
+
+    return new
+    {
+        model = model,  // 🔹 ASEGÚRATE DE QUE ESTO NO SEA FIJO COMO "mistral"
+        messages = new[]
+        {
+            new { role = "system", content = PromptManager.GetSystemPrompt() },
+            new { role = "user", content = MessageManager.GetUserMessage(toolName) }
+        },
+        tools = tools.Length > 0 ? tools : null,  
+        tool_choice = "required",  
+        stream = false
+    };
+}
+
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Definitions\StockPriceToolDefinition.cs
+====================================
+using System.Collections.Generic;
+
+namespace Tools.Definitions
+{
+    public static class StockPriceToolDefinition
+    {
+        public static object GetDefinition()
+        {
+            return new
+            {
+                name = "get_stock_price",
+                description = "Obtiene el precio actual de una acción",
+                parameters = new
+                {
+                    type = "object",
+                    properties = new Dictionary<string, object>
+                    {
+                        { "symbol", new { type = "string", description = "El símbolo de la acción (por ejemplo, AAPL, GOOGL)" } }
+                    },
+                    required = new[] { "symbol" }
+                }
+            };
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Definitions\SystemInfoToolDefinition.cs
+====================================
+using System.Collections.Generic;
+
+namespace Tools.Definitions
+{
+    public static class SystemInfoToolDefinition
+    {
+        public static object GetDefinition()
+        {
+            return new
+            {
+                name = "get_os_info",
+                description = "Determina si el sistema operativo actual es Linux o Windows",
+                parameters = new
+                {
+                    type = "object",
+                    properties = new Dictionary<string, object>(),
+                    required = new string[] { }
+                }
+            };
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Definitions\WeatherToolDefinition.cs
+====================================
+using System.Collections.Generic;
+
+namespace Tools.Definitions
+{
+    public static class WeatherToolDefinition
+    {
+        public static object GetDefinition()
+        {
+            return new
+            {
+                name = "get_weather",
+                description = "Obtiene el clima actual de una ubicación dada",
+                parameters = new
+                {
+                    type = "object",
+                    properties = new Dictionary<string, object>
+                    {
+                        { "location", new { type = "string", description = "El nombre de la ciudad o ubicación" } }
+                    },
+                    required = new[] { "location" }
+                }
+            };
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\ITool.cs
+====================================
+using System.Threading.Tasks;
+
+namespace Tools
+{
+    public interface ITool
+    {
+        string Name { get; }
+        Task<string> ExecuteAsync(string argumentsJson);
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Messages\MessageManager.cs
+====================================
+using System.Collections.Generic;
+
+namespace Tools.Messages
+{
+    public static class MessageManager
+    {
+        private static readonly Dictionary<string, string> messages = new Dictionary<string, string>
+        {
+            { "get_weather", WeatherMessage.GetMessage() },
+            { "get_stock_price", StockPriceMessage.GetMessage() },
+            { "get_system_info", SystemInfoMessage.GetMessage() }
+        };
+
+        public static string GetUserMessage(string toolName)
+        {
+            return toolName switch
+            {
+                "get_weather" => "Usa la herramienta 'get_weather' para decirme el clima actual en Madrid.",
+                "get_stock_price" => "Usa la herramienta 'get_stock_price' para decirme el precio de la acción de Apple (AAPL).",
+                "get_system_info" => "Usa la herramienta 'get_system_info' para mostrar información sobre el espacio en disco y rendimiento del sistema.",
+                _ => "Usa la herramienta adecuada para responder mi pregunta."
+            };
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Messages\StockPriceMessage.cs
+====================================
+namespace Tools.Messages
+{
+    public static class StockPriceMessage
+    {
+        public static string GetMessage()
+        {
+            return "¿Cuál es el precio de la acción de Apple (AAPL)?";
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Messages\SystemInfoMessage.cs
+====================================
+namespace Tools.Messages
+{
+    public static class SystemInfoMessage
+    {
+        public static string GetMessage()
+        {
+            return "Usa la herramienta 'get_system_info' para obtener información sobre el sistema.";
+        }
+    }
+}
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Messages\WeatherMessage.cs
+====================================
+namespace Tools.Messages
+{
+    public static class WeatherMessage
+    {
+        public static string GetMessage()
+        {
+            return "Usa la herramienta 'get_weather' para decirme el clima actual en Madrid.";
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Prompts\PromptManager.cs
+====================================
+using System.Collections.Generic;
+
+namespace Tools.Prompts
+{
+    public static class PromptManager
+    {
+        private static readonly Dictionary<string, string> prompts = new Dictionary<string, string>
+        {
+            { "get_weather", WeatherPrompt.GetPrompt() },
+            { "get_stock_price", StockPricePrompt.GetPrompt() },
+            { "get_system_info", SystemInfoPrompt.GetPrompt() }
+        };
+
+        public static string GetSystemPrompt()
+        {
+            return "Eres un asistente con acceso a herramientas. Nunca respondas directamente si existe una herramienta que pueda proporcionar la información. Siempre usa las herramientas disponibles para responder.";
+        }
+
+        public static string GetPromptForTool(string toolName)
+        {
+            return prompts.ContainsKey(toolName) ? prompts[toolName] : GetSystemPrompt();
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Prompts\StockPricePrompt.cs
+====================================
+namespace Tools.Prompts
+{
+    public static class StockPricePrompt
+    {
+        public static string GetPrompt()
+        {
+            return "Tienes acceso a herramientas. Usa 'get_stock_price' si preguntan por el precio de una acción.";
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Prompts\SystemInfoPrompt.cs
+====================================
+namespace Tools.Prompts
+{
+    public static class SystemInfoPrompt
+    {
+        public static string GetPrompt()
+        {
+            return "Tienes acceso a herramientas. Usa 'get_system_info' si preguntan por información del sistema, espacio en disco, o rendimiento del hardware.";
+        }
+    }
+}
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\Prompts\WeatherPrompt.cs
+====================================
+namespace Tools.Prompts
+{
+    public static class WeatherPrompt
+    {
+        public static string GetPrompt()
+        {
+            return "Tienes acceso a herramientas. Usa 'get_weather' si preguntan por el clima.";
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\StockPriceTool.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace Tools
+{
+    public class StockPriceTool : ITool
+    {
+        public string Name => "get_stock_price";
+
+        public async Task<string> ExecuteAsync(string argumentsJson)
+        {
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true  // 🔹 Asegura que "symbol" se reconozca correctamente
+                };
+
+                var arguments = JsonSerializer.Deserialize<StockArguments>(argumentsJson, options);
+                if (arguments == null || string.IsNullOrEmpty(arguments.Symbol))
+                    return "⚠️ Error: No se proporcionó un símbolo de acción válido.";
+
+                return await GetStockPriceAsync(arguments.Symbol);
+            }
+            catch (Exception ex)
+            {
+                return $"❌ Error al procesar los argumentos: {ex.Message}";
+            }
+        }
+
+        private async Task<string> GetStockPriceAsync(string symbol)
+        {
+            await Task.Delay(500);
+            var random = new Random();
+            var price = random.Next(100, 500) + random.NextDouble();
+            return $"El precio actual de {symbol} es ${price:F2}";
+        }
+
+        private class StockArguments
+        {
+            [JsonPropertyName("symbol")]
+            public string? Symbol { get; set; }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\SystemInfoTool.cs
+====================================
+using System;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+
+namespace Tools
+{
+    public class SystemInfoTool : ITool
+    {
+        public string Name => "get_os_info";
+
+        public Task<string> ExecuteAsync(string argumentsJson)
+        {
+            string osName = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? "Windows"
+                : RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
+                    ? "Linux"
+                    : "Unknown";
+
+            return Task.FromResult($"El sistema operativo actual es: {osName}");
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\ToolDefinitionManager.cs
+====================================
+using System.Collections.Generic;
+using Tools.Definitions;
+
+namespace Tools
+{
+    public static class ToolDefinitionManager
+    {
+        public static object[] GetAllToolDefinitions()
+        {
+            return new object[]
+            {
+                WeatherToolDefinition.GetDefinition(),
+                StockPriceToolDefinition.GetDefinition(),
+                SystemInfoToolDefinition.GetDefinition()
+            };
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\ToolManager.cs
+====================================
+using System.Collections.Generic;
+using System.Linq;
+using Serilog;
+
+namespace Tools
+{
+    public static class ToolManager
+    {
+        private static readonly List<ITool> tools = new List<ITool>
+        {
+            new WeatherTool(),
+            new StockPriceTool(),
+            new SystemInfoTool()
+        };
+
+        public static ITool? GetToolByName(string? name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                Log.Warning("⚠️ Se intentó buscar una herramienta con un nombre vacío o nulo.");
+                return null;
+            }
+
+            Log.Information("🔎 Buscando herramienta '{name}' en ToolManager...", name);
+            var tool = tools.FirstOrDefault(t => t.Name == name);
+
+            if (tool == null)
+            {
+                Log.Warning("⚠️ Herramienta '{name}' no encontrada en ToolManager.", name);
+            }
+            else
+            {
+                Log.Information("✅ Herramienta '{name}' encontrada en ToolManager.", name);
+            }
+
+            return tool;
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Tools\WeatherTool.cs
+====================================
+using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace Tools
+{
+    public class WeatherTool : ITool
+    {
+        public string Name => "get_weather";
+
+        public async Task<string> ExecuteAsync(string argumentsJson)
+        {
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var arguments = JsonSerializer.Deserialize<WeatherArguments>(argumentsJson, options);
+                if (arguments == null)
+                    return "⚠️ Error: No se proporcionó una ubicación válida.";
+
+                string location = !string.IsNullOrEmpty(arguments.Location) ? arguments.Location :
+                                  !string.IsNullOrEmpty(arguments.City) ? arguments.City : 
+                                  "desconocida";
+
+                return await GetWeatherAsync(location);
+            }
+            catch (Exception ex)
+            {
+                return $"❌ Error al procesar los argumentos: {ex.Message}";
+            }
+        }
+
+        private async Task<string> GetWeatherAsync(string location)
+        {
+            await Task.Delay(500);
+            var random = new Random();
+            var temperature = random.Next(-10, 40);
+            var conditions = new[] { "soleado", "nublado", "lluvioso", "nevando" };
+            var condition = conditions[random.Next(conditions.Length)];
+            return $"El clima actual en {location} es {condition} con una temperatura de {temperature}°C.";
+        }
+
+        private class WeatherArguments
+        {
+            [JsonPropertyName("location")]
+            public string? Location { get; set; }
+
+            [JsonPropertyName("city")] 
+            public string? City { get; set; }
+        }
+    }
+}
+
+
+
+
+====================================
+📄 Ruta: D:\Ollama-Llama3-Tools-CSharp\Demo 4\Utils\CodeExporter.cs
+====================================
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace Utils
+{
+    public static class CodeExporter
+    {
+        public static void ExportCodeToTxt(string rootDirectory)
+        {
+            string outputFile = Path.Combine(rootDirectory, "code.txt");
+
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                var files = Directory.GetFiles(rootDirectory, "*.*", SearchOption.AllDirectories)
+                                     .Where(f => (f.EndsWith(".cs") || f.EndsWith(".json") || f.EndsWith(".csproj") || f.EndsWith(".sln")) &&
+                                                 !f.Contains(@"\obj\") && !f.Contains(@"\bin\"))
+                                     .OrderBy(f => f);
+
+                foreach (var file in files)
+                {
+                    sb.AppendLine($"====================================");
+                    sb.AppendLine($"📄 Ruta: {file}");
+                    sb.AppendLine($"====================================");
+                    sb.AppendLine(File.ReadAllText(file));
+                    sb.AppendLine("\n\n");
+                }
+
+                File.WriteAllText(outputFile, sb.ToString());
+                Console.WriteLine($"✅ Código exportado a: {outputFile}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error al exportar el código: {ex.Message}");
+            }
+        }
+    }
+}
+
+
+
+
